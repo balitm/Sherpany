@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "5gn-zb-0fv"; */
+"5gn-zb-0fv.text" = "Title";
+
+/* Class = "UITableViewController"; title = "Albums"; ObjectID = "ZZj-Wd-7ux"; */
+"ZZj-Wd-7ux.title" = "Albums";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "hL9-57-jD4"; */
+"hL9-57-jD4.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Users"; ObjectID = "v5G-JU-Fj2"; */
+"v5G-JU-Fj2.title" = "Benutzer";

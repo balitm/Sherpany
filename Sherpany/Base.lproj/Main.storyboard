@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Users Table View Controller-->
+        <!--Users-->
         <scene sceneID="k5M-gL-WSR">
             <objects>
                 <tableViewController id="3w6-iW-5dh" customClass="UsersTableViewController" customModule="Sherpany" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sincere@april.biz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="191" translatesAutoresizingMaskIntoConstraints="NO" id="Jfd-Mn-1BX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="191" translatesAutoresizingMaskIntoConstraints="NO" id="Jfd-Mn-1BX">
                                             <rect key="frame" x="165" y="11" width="133" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="191" id="SUu-h3-uBA"/>
@@ -35,13 +35,14 @@
                                                     <exclude reference="SUu-h3-uBA"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
+                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                <rect key="frame" x="210" y="13" width="191" height="17"/>
                                                 <mask key="constraints">
                                                     <include reference="SUu-h3-uBA"/>
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Nicholas Runolfsdottir V" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="185" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-FQ-cba">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="185" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-FQ-cba">
                                             <rect key="frame" x="8" y="11" width="185" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="185" id="cjg-BG-Kaq"/>
@@ -54,17 +55,21 @@
                                                     <exclude reference="cjg-BG-Kaq"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=regular">
+                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                <rect key="frame" x="15" y="13" width="185" height="18"/>
                                                 <mask key="constraints">
                                                     <include reference="cjg-BG-Kaq"/>
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Multi-layered client-server neural-net" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EB-na-vcI">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EB-na-vcI">
                                             <rect key="frame" x="306" y="11" width="286" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                <rect key="frame" x="411" y="13" width="279" height="17"/>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
@@ -112,7 +117,7 @@
                             <outlet property="delegate" destination="3w6-iW-5dh" id="Pj7-vs-Fx3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="v5G-JU-Fj2"/>
+                    <navigationItem key="navigationItem" title="Users" id="v5G-JU-Fj2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bG2-OU-NYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

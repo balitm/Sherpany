@@ -67,6 +67,10 @@
 		293F9A091C88AB0B00C10A59 /* SherpanyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SherpanyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpanyTests.swift; sourceTree = "<group>"; };
 		293F9A0F1C88AB0B00C10A59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		294A2E581C8B310400464497 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		294A2E591C8B310400464497 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		294A2E5A1C8B319300464497 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		294A2E5B1C8B319300464497 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelNetTests.swift; sourceTree = "<group>"; };
 		296DB5D01C89CC05005D53CD /* ModelNet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelNet.swift; path = Sherpany/ModelNet.swift; sourceTree = "<group>"; };
 		296DB5EE1C89EA81005D53CD /* DataStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStructs.swift; path = Sherpany/DataStructs.swift; sourceTree = "<group>"; };
@@ -347,6 +351,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				293F99FA1C88AB0B00C10A59 /* Base */,
+				294A2E581C8B310400464497 /* fr */,
+				294A2E5A1C8B319300464497 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -355,6 +361,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				293F9A021C88AB0B00C10A59 /* Base */,
+				294A2E591C8B310400464497 /* fr */,
+				294A2E5B1C8B319300464497 /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
