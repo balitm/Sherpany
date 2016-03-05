@@ -17,8 +17,10 @@ class UsersTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         _model.setupUsers {
             print("users added to db.")
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }
     }
 

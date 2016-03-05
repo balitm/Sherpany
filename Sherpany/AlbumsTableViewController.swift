@@ -19,7 +19,9 @@ class AlbumsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if model.isEmptyAlbums() {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             model.setupAlbums {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 print("albums added to db.")
             }
         }
@@ -90,8 +92,7 @@ extension AlbumsTableViewController: NSFetchedResultsControllerDelegate {
         let sortDescriptor = NSSortDescriptor(key: "albumId", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
 
-        let pred = NSPredicate(format: "userId == %d", self.userId)
-        fetchRequest.predicate = pred
+        fetchRequest.predicate = NSPredicate(format: "userId == %d", self.userId)
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".

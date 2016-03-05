@@ -20,7 +20,9 @@ class PhotosTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if model.isEmptyPhotos() {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             model.setupPhotos {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 print("photo info added to db.")
             }
         }
@@ -79,8 +81,7 @@ extension PhotosTableViewController: NSFetchedResultsControllerDelegate {
         let sortDescriptor = NSSortDescriptor(key: "photoId", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
 
-        let pred = NSPredicate(format: "albumId == %d", self.albumId)
-        fetchRequest.predicate = pred
+        fetchRequest.predicate = NSPredicate(format: "albumId == %d", self.albumId)
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
