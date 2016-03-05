@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // Override point for customization after application launch.
+    CoreDataManager.initialize(self.managedObjectContext)
     return true
   }
 
@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    self.saveContext()
+    CoreDataManager.instance.saveContext()
   }
 
   // MARK: - Core Data stack
@@ -62,10 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
       // Create the coordinator and store
       let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-      let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+//      let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
       var failureReason = "There was an error creating or loading the application's saved data."
       do {
-          try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+          try coordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
       } catch {
           // Report any error we got.
           var dict = [String: AnyObject]()
@@ -90,22 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       managedObjectContext.persistentStoreCoordinator = coordinator
       return managedObjectContext
   }()
-
-  // MARK: - Core Data Saving support
-
-  func saveContext () {
-      if managedObjectContext.hasChanges {
-          do {
-              try managedObjectContext.save()
-          } catch {
-              // Replace this implementation with code to handle the error appropriately.
-              // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-              let nserror = error as NSError
-              NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-              abort()
-          }
-      }
-  }
 
 }
 

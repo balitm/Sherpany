@@ -3,17 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		293F99F61C88AB0B00C10A59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F99F51C88AB0B00C10A59 /* AppDelegate.swift */; };
-		293F99F81C88AB0B00C10A59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F99F71C88AB0B00C10A59 /* ViewController.swift */; };
 		293F99FB1C88AB0B00C10A59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293F99F91C88AB0B00C10A59 /* Main.storyboard */; };
 		293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 293F99FC1C88AB0B00C10A59 /* Sherpany.xcdatamodeld */; };
 		293F9A001C88AB0B00C10A59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 293F99FF1C88AB0B00C10A59 /* Assets.xcassets */; };
 		293F9A031C88AB0B00C10A59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293F9A011C88AB0B00C10A59 /* LaunchScreen.storyboard */; };
 		293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */; };
+		296DB5CF1C89AFE0005D53CD /* ModelNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */; };
+		296DB5D11C89CC05005D53CD /* ModelNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* ModelNet.swift */; };
+		296DB5D21C89CC05005D53CD /* ModelNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* ModelNet.swift */; };
+		296DB5EF1C89EA81005D53CD /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5EE1C89EA81005D53CD /* DataStructs.swift */; };
+		296DB5F01C89EA81005D53CD /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5EE1C89EA81005D53CD /* DataStructs.swift */; };
+		296DB5F51C89EA9C005D53CD /* AlbumEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */; };
+		296DB5F61C89EA9C005D53CD /* AlbumEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */; };
+		296DB5F71C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
+		296DB5F81C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
+		296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
+		296DB5FA1C89EA9C005D53CD /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
+		296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
+		296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
+		29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
+		29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
+		29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
+		29F97C841C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
+		29F97C871C8AE441005A5276 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C861C8AE441005A5276 /* UserTableViewCell.swift */; };
+		29F97C881C8AE441005A5276 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C861C8AE441005A5276 /* UserTableViewCell.swift */; };
+		29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
+		29FF77AE1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
+		29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
+		29FF77B21C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
+		29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
+		29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
+		29FF77B61C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */; };
+		29FF77B71C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +55,6 @@
 /* Begin PBXFileReference section */
 		293F99F21C88AB0B00C10A59 /* Sherpany.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sherpany.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		293F99F51C88AB0B00C10A59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		293F99F71C88AB0B00C10A59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		293F99FA1C88AB0B00C10A59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		293F99FD1C88AB0B00C10A59 /* Sherpany.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sherpany.xcdatamodel; sourceTree = "<group>"; };
 		293F99FF1C88AB0B00C10A59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +63,20 @@
 		293F9A091C88AB0B00C10A59 /* SherpanyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SherpanyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpanyTests.swift; sourceTree = "<group>"; };
 		293F9A0F1C88AB0B00C10A59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelNetTests.swift; sourceTree = "<group>"; };
+		296DB5D01C89CC05005D53CD /* ModelNet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelNet.swift; path = Sherpany/ModelNet.swift; sourceTree = "<group>"; };
+		296DB5EE1C89EA81005D53CD /* DataStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStructs.swift; path = Sherpany/DataStructs.swift; sourceTree = "<group>"; };
+		296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumEntity.swift; path = Sherpany/AlbumEntity.swift; sourceTree = "<group>"; };
+		296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AlbumEntity+CoreDataProperties.swift"; path = "Sherpany/AlbumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		296DB5F31C89EA9C005D53CD /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEntity.swift; path = Sherpany/UserEntity.swift; sourceTree = "<group>"; };
+		296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserEntity+CoreDataProperties.swift"; path = "Sherpany/UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		29F97C7C1C8ADA27005A5276 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Sherpany/Model.swift; sourceTree = "<group>"; };
+		29F97C821C8AE056005A5276 /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		29F97C861C8AE441005A5276 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Sherpany/CoreDataManager.swift; sourceTree = "<group>"; };
+		29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoEntity.swift; path = Sherpany/PhotoEntity.swift; sourceTree = "<group>"; };
+		29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PhotoEntity+CoreDataProperties.swift"; path = "Sherpany/PhotoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Sherpany/CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +104,9 @@
 				293F9A0C1C88AB0B00C10A59 /* SherpanyTests */,
 				293F99F31C88AB0B00C10A59 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		293F99F31C88AB0B00C10A59 /* Products */ = {
 			isa = PBXGroup;
@@ -79,8 +120,11 @@
 		293F99F41C88AB0B00C10A59 /* Sherpany */ = {
 			isa = PBXGroup;
 			children = (
+				29F97C851C8AE3F1005A5276 /* Cell */,
+				296DB5CA1C89AD3C005D53CD /* Model */,
+				296DB5C91C89A875005D53CD /* CoreData */,
 				293F99F51C88AB0B00C10A59 /* AppDelegate.swift */,
-				293F99F71C88AB0B00C10A59 /* ViewController.swift */,
+				29F97C821C8AE056005A5276 /* UsersTableViewController.swift */,
 				293F99F91C88AB0B00C10A59 /* Main.storyboard */,
 				293F99FF1C88AB0B00C10A59 /* Assets.xcassets */,
 				293F9A011C88AB0B00C10A59 /* LaunchScreen.storyboard */,
@@ -95,8 +139,44 @@
 			children = (
 				293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */,
 				293F9A0F1C88AB0B00C10A59 /* Info.plist */,
+				296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */,
 			);
 			path = SherpanyTests;
+			sourceTree = "<group>";
+		};
+		296DB5C91C89A875005D53CD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */,
+				29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */,
+				29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */,
+				296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */,
+				296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */,
+				296DB5F31C89EA9C005D53CD /* UserEntity.swift */,
+				296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */,
+				29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */,
+			);
+			name = CoreData;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		296DB5CA1C89AD3C005D53CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				296DB5EE1C89EA81005D53CD /* DataStructs.swift */,
+				296DB5D01C89CC05005D53CD /* ModelNet.swift */,
+				29F97C7C1C8ADA27005A5276 /* Model.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		29F97C851C8AE3F1005A5276 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				29F97C861C8AE441005A5276 /* UserTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +237,7 @@
 				};
 			};
 			buildConfigurationList = 293F99ED1C88AB0B00C10A59 /* Build configuration list for PBXProject "Sherpany" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +280,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				293F99F81C88AB0B00C10A59 /* ViewController.swift in Sources */,
+				29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,
+				29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */,
+				296DB5F71C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */,
+				29F97C871C8AE441005A5276 /* UserTableViewCell.swift in Sources */,
+				296DB5D11C89CC05005D53CD /* ModelNet.swift in Sources */,
+				296DB5EF1C89EA81005D53CD /* DataStructs.swift in Sources */,
+				29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */,
+				296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
+				29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */,
+				29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
+				29FF77B61C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */,
 				293F99F61C88AB0B00C10A59 /* AppDelegate.swift in Sources */,
+				296DB5F51C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
 				293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */,
+				296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +302,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296DB5F81C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */,
+				296DB5CF1C89AFE0005D53CD /* ModelNetTests.swift in Sources */,
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
+				296DB5F01C89EA81005D53CD /* DataStructs.swift in Sources */,
+				29F97C881C8AE441005A5276 /* UserTableViewCell.swift in Sources */,
+				296DB5FA1C89EA9C005D53CD /* UserEntity.swift in Sources */,
+				296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
+				29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */,
+				29F97C841C8AE056005A5276 /* UsersTableViewController.swift in Sources */,
+				29FF77B71C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */,
+				296DB5F61C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
+				296DB5D21C89CC05005D53CD /* ModelNet.swift in Sources */,
+				29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,
+				29FF77AE1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
+				29FF77B21C8A0F9500A9C469 /* PhotoEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +437,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Sherpany/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hu.kil-dev.Sherpany";
@@ -342,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Sherpany/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hu.kil-dev.Sherpany";
@@ -392,6 +500,7 @@
 				293F9A141C88AB0B00C10A59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		293F9A151C88AB0B00C10A59 /* Build configuration list for PBXNativeTarget "SherpanyTests" */ = {
 			isa = XCConfigurationList;
@@ -400,6 +509,7 @@
 				293F9A171C88AB0B00C10A59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
