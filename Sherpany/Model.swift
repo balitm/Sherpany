@@ -21,11 +21,12 @@ class Model {
                     }
                     cdm.saveContext()
                 } else {
-                    print("No users downloaded.")
+                    assert(false, "No users downloaded.")
                 }
                 finished();
             }
         } catch {
+            assert(false, "No users downloaded.")
         }
     }
 
@@ -39,11 +40,12 @@ class Model {
                     }
                     cdm.saveContext()
                 } else {
-                    print("No albums downloaded.")
+                    assert(false, "No albums downloaded.")
                 }
                 finished();
             }
         } catch {
+            assert(false, "No albums downloaded.")
         }
     }
 
@@ -57,11 +59,12 @@ class Model {
                     }
                     cdm.saveContext()
                 } else {
-                    print("No photos downloaded.")
+                    assert(false, "No photos downloaded.")
                 }
                 finished();
             }
         } catch {
+            assert(false, "No photos downloaded.")
         }
     }
 
