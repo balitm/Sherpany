@@ -1,5 +1,5 @@
 //
-//  UserTableViewCell.swift
+//  UsersTableViewCell.swift
 //  Sherpany
 //
 //  Created by Balázs Kilvády on 3/5/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserTableViewCell: UITableViewCell {
+class UsersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!

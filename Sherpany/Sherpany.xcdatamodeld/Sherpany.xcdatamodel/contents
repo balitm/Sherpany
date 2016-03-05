@@ -10,6 +10,7 @@
     <entity name="PhotoEntity" representedClassName="PhotoEntity" syncable="YES">
         <attribute name="albumId" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photoId" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="thumbnail" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="thumbnailUrl" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="album" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AlbumEntity" inverseName="photos" inverseEntity="AlbumEntity" syncable="YES"/>
@@ -23,7 +24,7 @@
     </entity>
     <elements>
         <element name="AlbumEntity" positionX="-54" positionY="-9" width="128" height="120"/>
-        <element name="PhotoEntity" positionX="-63" positionY="27" width="128" height="120"/>
+        <element name="PhotoEntity" positionX="-63" positionY="27" width="128" height="135"/>
         <element name="UserEntity" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

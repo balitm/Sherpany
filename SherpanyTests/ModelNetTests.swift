@@ -102,4 +102,29 @@ class ModelNetTests: XCTestCase {
         waitForExpectationsWithTimeout(5, handler: nil)
         XCTAssert(net.status == ModelNet.Status.kNetFinished)
     }
+
+    func testDownloadPicture() {
+        let net = ModelNet()
+        let expectation = expectationWithDescription("Async Method")
+        let url = "http://placehold.it/150/6ba424"
+
+        do {
+            try net.downloadPicture(url, finished: {(pictureData: NSData?) -> Void in
+                if let data = pictureData {
+                    let image = UIImage(data: data)
+                    assert(image != nil)
+                } else {
+                    XCTAssert(false)
+                }
+                expectation.fulfill()
+            })
+        } catch ModelNet.Error.URLFormat {
+            print("error caught: wrong uml format.")
+        } catch {
+            print("error caught.")
+        }
+
+        waitForExpectationsWithTimeout(5, handler: nil)
+        XCTAssert(net.status == ModelNet.Status.kNetFinished)
+    }
 }

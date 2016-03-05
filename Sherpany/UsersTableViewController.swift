@@ -12,15 +12,13 @@ import CoreData
 private let _kReuseId = "UserCell"
 
 class UsersTableViewController: UITableViewController {
-    private let _model = Model()
+    weak var model: Model! = nil
     private var _fetchedResultsController: NSFetchedResultsController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        _model.setupUsers {
+        model.setupUsers {
             print("users added to db.")
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }
     }
 
@@ -36,7 +34,7 @@ class UsersTableViewController: UITableViewController {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as! UserEntity
             let controller = segue.destinationViewController as! AlbumsTableViewController
-            controller.model = _model
+            controller.model = model
             controller.userId = user.userId
             controller.navigationItem.title = user.name
         }
@@ -55,12 +53,12 @@ class UsersTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(_kReuseId, forIndexPath: indexPath) as! UserTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(_kReuseId, forIndexPath: indexPath) as! UsersTableViewCell
         _configureCell(cell, atIndexPath: indexPath)
         return cell
     }
 
-    private func _configureCell(cell: UserTableViewCell, atIndexPath indexPath: NSIndexPath) {
+    private func _configureCell(cell: UsersTableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as? UserEntity {
             cell.nameLabel.text = user.name
             cell.emailLabel.text = user.email
@@ -71,6 +69,7 @@ class UsersTableViewController: UITableViewController {
 
 
 // MARK: - Fetched results controller
+
 extension UsersTableViewController: NSFetchedResultsControllerDelegate {
 
     var fetchedResultsController: NSFetchedResultsController {
@@ -110,43 +109,6 @@ extension UsersTableViewController: NSFetchedResultsControllerDelegate {
 
         return _fetchedResultsController!
     }
-
-/*
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.beginUpdates()
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        default:
-            return
-        }
-    }
-
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
-            self._configureCell(tableView.cellForRowAtIndexPath(indexPath!) as! UserTableViewCell, atIndexPath: indexPath!)
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        }
-    }
-
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.endUpdates()
-    }
-*/
-
-    // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         // In the simplest, most efficient, case, reload the table view.

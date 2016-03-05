@@ -15,14 +15,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UsersCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserCell" id="Ea4-Co-0Mi" customClass="UserTableViewCell" customModule="Sherpany" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserCell" id="Ea4-Co-0Mi" customClass="UsersTableViewCell" customModule="Sherpany" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ea4-Co-0Mi" id="BPz-Ab-92s">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="191" translatesAutoresizingMaskIntoConstraints="NO" id="Jfd-Mn-1BX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="191" translatesAutoresizingMaskIntoConstraints="NO" id="Jfd-Mn-1BX">
                                             <rect key="frame" x="165" y="11" width="133" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="191" id="SUu-h3-uBA"/>
@@ -35,14 +35,19 @@
                                                     <exclude reference="SUu-h3-uBA"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="210" y="13" width="191" height="17"/>
+                                            <variation key="heightClass=regular-widthClass=regular">
                                                 <mask key="constraints">
                                                     <include reference="SUu-h3-uBA"/>
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="185" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-FQ-cba">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="catchPhrase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EB-na-vcI">
+                                            <rect key="frame" x="306" y="11" width="286" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="185" translatesAutoresizingMaskIntoConstraints="NO" id="hf2-FQ-cba">
                                             <rect key="frame" x="8" y="11" width="185" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="185" id="cjg-BG-Kaq"/>
@@ -55,20 +60,10 @@
                                                     <exclude reference="cjg-BG-Kaq"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="15" y="13" width="185" height="18"/>
+                                            <variation key="heightClass=regular-widthClass=regular">
                                                 <mask key="constraints">
                                                     <include reference="cjg-BG-Kaq"/>
                                                 </mask>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9EB-na-vcI">
-                                            <rect key="frame" x="306" y="11" width="286" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="411" y="13" width="279" height="17"/>
                                             </variation>
                                         </label>
                                     </subviews>
@@ -171,27 +166,82 @@
         <scene sceneID="XDE-hk-N9V">
             <objects>
                 <tableViewController id="i2B-6Y-efy" customClass="PhotosTableViewController" customModule="Sherpany" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1kT-gu-RfC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="155" sectionHeaderHeight="28" sectionFooterHeight="28" id="1kT-gu-RfC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" textLabel="hL9-57-jD4" style="IBUITableViewCellStyleDefault" id="Jej-Bj-OMI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" id="Jej-Bj-OMI" customClass="PhotosTableViewCell" customModule="Sherpany" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jej-Bj-OMI" id="JIX-mB-bGt">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hL9-57-jD4">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-MW-Yvh">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="eni-ua-Ggx"/>
+                                                <constraint firstAttribute="height" constant="150" id="vbF-60-cGL"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="eni-ua-Ggx"/>
+                                                    <exclude reference="vbF-60-cGL"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=regular">
+                                                <mask key="constraints">
+                                                    <include reference="eni-ua-Ggx"/>
+                                                    <include reference="vbF-60-cGL"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBW-Od-FDh">
+                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="rGS-MW-Yvh" firstAttribute="centerY" secondItem="JIX-mB-bGt" secondAttribute="centerY" id="Mxs-Ew-bTp"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gBW-Od-FDh" secondAttribute="trailing" id="hwf-12-AjE"/>
+                                        <constraint firstItem="gBW-Od-FDh" firstAttribute="leading" secondItem="rGS-MW-Yvh" secondAttribute="trailing" constant="8" id="kYG-FV-NUf"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="rGS-MW-Yvh" secondAttribute="leading" id="pDi-t8-dbk"/>
+                                        <constraint firstItem="gBW-Od-FDh" firstAttribute="centerY" secondItem="rGS-MW-Yvh" secondAttribute="centerY" id="xYt-EU-Svo"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="rGS-MW-Yvh"/>
+                                            <exclude reference="gBW-Od-FDh"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="Mxs-Ew-bTp"/>
+                                            <exclude reference="pDi-t8-dbk"/>
+                                            <exclude reference="hwf-12-AjE"/>
+                                            <exclude reference="kYG-FV-NUf"/>
+                                            <exclude reference="xYt-EU-Svo"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=regular">
+                                        <mask key="subviews">
+                                            <include reference="rGS-MW-Yvh"/>
+                                            <include reference="gBW-Od-FDh"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="Mxs-Ew-bTp"/>
+                                            <include reference="pDi-t8-dbk"/>
+                                            <include reference="hwf-12-AjE"/>
+                                            <include reference="kYG-FV-NUf"/>
+                                            <include reference="xYt-EU-Svo"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="thumbnail" destination="rGS-MW-Yvh" id="9A9-el-8BG"/>
+                                    <outlet property="titleLabel" destination="gBW-Od-FDh" id="u53-lX-gI1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

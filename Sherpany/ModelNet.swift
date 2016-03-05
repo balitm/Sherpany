@@ -29,11 +29,30 @@ class ModelNet {
 
     var status = Status.kNetNoop
 
-    func downloadUsers(finished: (users: [UserData]?) -> Void) throws {
+    func downloadPicture(url: String, finished: (pictureData: NSData?) -> Void) throws {
+        guard let pictureURL = NSURL(string: url) else {
+            throw Error.URLFormat
+        }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        status = Status.kNetExecuting
+        dispatch_async(dispatch_get_global_queue(priority, 0), {
+            if let data = NSData(contentsOfURL: pictureURL) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    finished(pictureData: data)
+                    self.status = Status.kNetFinished
+                }
+            } else {
+                self.status = Status.kNetNoHost
+            }
+        })
+    }
+
+    func downloadUsers(finished: (users: [UserData]?) -> Void) throws {
+        assert(status == Status.kNetFinished || status == Status.kNetNoop)
         guard let usersURL = NSURL(string: ModelNet.kUsersURL) else {
             throw Error.URLFormat
         }
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
             if let data = NSData(contentsOfURL: usersURL) {
@@ -49,10 +68,11 @@ class ModelNet {
     }
 
     func downloadAlbums(finished: (albums: [AlbumData]?) -> Void) throws {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        assert(status == Status.kNetFinished || status == Status.kNetNoop)
         guard let albumsURL = NSURL(string: ModelNet.kAlbumsURL) else {
             throw Error.URLFormat
         }
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
             if let data = NSData(contentsOfURL: albumsURL) {
@@ -68,10 +88,11 @@ class ModelNet {
     }
 
     func downloadPhotos(finished: (photos: [PhotoData]?) -> Void) throws {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        assert(status == Status.kNetFinished || status == Status.kNetNoop)
         guard let photosURL = NSURL(string: ModelNet.kPhotosURL) else {
             throw Error.URLFormat
         }
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
             if let data = NSData(contentsOfURL: photosURL) {

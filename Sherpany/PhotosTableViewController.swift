@@ -20,9 +20,7 @@ class PhotosTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if model.isEmptyPhotos() {
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             model.setupPhotos {
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 print("photo info added to db.")
             }
         }
@@ -32,7 +30,6 @@ class PhotosTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 
     // MARK: - Table View
@@ -47,20 +44,28 @@ class PhotosTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(_kReuseId, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(_kReuseId, forIndexPath: indexPath) as! PhotosTableViewCell
         _configureCell(cell, atIndexPath: indexPath)
         return cell
     }
 
-    private func _configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    private func _configureCell(cell: PhotosTableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let photo = self.fetchedResultsController.objectAtIndexPath(indexPath) as? PhotoEntity {
-            cell.textLabel?.text = photo.title
+            cell.titleLabel.text = photo.title
+            if photo.thumbnail == nil {
+                model.addPicture(photo, finished: {
+                    print("Thumbnail \(photo.thumbnailUrl) downloaded.")
+                })
+            } else {
+                cell.thumbnail.image = UIImage(data: photo.thumbnail!)
+            }
         }
     }
 }
 
 
 // MARK: - Fetched results controller
+
 extension PhotosTableViewController: NSFetchedResultsControllerDelegate {
 
     var fetchedResultsController: NSFetchedResultsController {
@@ -102,8 +107,36 @@ extension PhotosTableViewController: NSFetchedResultsControllerDelegate {
         return _fetchedResultsController!
     }
 
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            return
+        }
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self._configureCell(tableView.cellForRowAtIndexPath(indexPath!) as! PhotosTableViewCell, atIndexPath: indexPath!)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        }
+    }
+
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        // In the simplest, most efficient, case, reload the table view.
-        self.tableView.reloadData()
+        self.tableView.endUpdates()
     }
 }
