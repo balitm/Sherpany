@@ -26,6 +26,10 @@
 		296DB5FA1C89EA9C005D53CD /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
 		296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
 		296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
+		297376191C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */; };
+		2973761A1C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */; };
+		2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */; };
+		2973761D1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */; };
 		29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
@@ -70,6 +74,8 @@
 		296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AlbumEntity+CoreDataProperties.swift"; path = "Sherpany/AlbumEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		296DB5F31C89EA9C005D53CD /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserEntity.swift; path = Sherpany/UserEntity.swift; sourceTree = "<group>"; };
 		296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserEntity+CoreDataProperties.swift"; path = "Sherpany/UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
+		2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		29F97C7C1C8ADA27005A5276 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Sherpany/Model.swift; sourceTree = "<group>"; };
 		29F97C821C8AE056005A5276 /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		29F97C861C8AE441005A5276 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +131,8 @@
 				296DB5C91C89A875005D53CD /* CoreData */,
 				293F99F51C88AB0B00C10A59 /* AppDelegate.swift */,
 				29F97C821C8AE056005A5276 /* UsersTableViewController.swift */,
+				297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */,
+				2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */,
 				293F99F91C88AB0B00C10A59 /* Main.storyboard */,
 				293F99FF1C88AB0B00C10A59 /* Assets.xcassets */,
 				293F9A011C88AB0B00C10A59 /* LaunchScreen.storyboard */,
@@ -285,6 +293,7 @@
 				296DB5F71C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */,
 				29F97C871C8AE441005A5276 /* UserTableViewCell.swift in Sources */,
 				296DB5D11C89CC05005D53CD /* ModelNet.swift in Sources */,
+				297376191C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */,
 				296DB5EF1C89EA81005D53CD /* DataStructs.swift in Sources */,
 				29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */,
 				296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
@@ -295,6 +304,7 @@
 				296DB5F51C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
 				293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */,
 				296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */,
+				2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +317,7 @@
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
 				296DB5F01C89EA81005D53CD /* DataStructs.swift in Sources */,
 				29F97C881C8AE441005A5276 /* UserTableViewCell.swift in Sources */,
+				2973761A1C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */,
 				296DB5FA1C89EA9C005D53CD /* UserEntity.swift in Sources */,
 				296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
 				29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */,
@@ -317,6 +328,7 @@
 				29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,
 				29FF77AE1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
 				29FF77B21C8A0F9500A9C469 /* PhotoEntity.swift in Sources */,
+				2973761D1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

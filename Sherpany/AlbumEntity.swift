@@ -11,7 +11,8 @@ import CoreData
 
 
 class AlbumEntity: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
-
+    class func createAlbumEntity(moc: NSManagedObjectContext) -> AlbumEntity {
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName("AlbumEntity", inManagedObjectContext: moc) as! AlbumEntity
+        return newItem
+    }
 }

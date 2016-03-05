@@ -53,6 +53,29 @@ class CoreDataManager {
         user.catchPhrase = data.catchPhrase
         return user
     }
+
+    func createAlbumEntity(data: AlbumData) -> AlbumEntity {
+        let album = AlbumEntity.createAlbumEntity(managedContext)
+        album.albumId = data.albumId
+        album.userId = data.userId
+        album.title = data.title
+        return album
+    }
+
+    func createPhotoEntity(data: PhotoData) -> PhotoEntity {
+        let photo = PhotoEntity.createPhotoEntity(managedContext)
+        photo.photoId = data.photoId
+        photo.albumId = data.albumId
+        photo.title = data.title
+        photo.thumbnailUrl = data.thumbnailUrl
+        return photo
+    }
+
+    func isEmpty(entityName: String) -> Bool {
+        let request = NSFetchRequest(entityName: entityName)
+        return managedContext.countForFetchRequest(request, error: nil) == 0
+    }
+
 //    func fetch(name: String) -> Pattern? {
 //        let request = NSFetchRequest(entityName: "Pattern")
 //        request.predicate = NSPredicate(format: "name = %@", argumentArray: [name])

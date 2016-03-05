@@ -6,12 +6,12 @@
 //  Copyright © 2016 kil-dev. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 @objc(PhotoEntity)
 class PhotoEntity: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
-
+    class func createPhotoEntity(moc: NSManagedObjectContext) -> PhotoEntity {
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName("PhotoEntity", inManagedObjectContext: moc) as! PhotoEntity
+        return newItem
+    }
 }

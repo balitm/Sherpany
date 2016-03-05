@@ -1,5 +1,5 @@
 //
-//  UsersTableViewController.swift
+//  AlbumsTableViewController.swift
 //  Sherpany
 //
 //  Created by Balázs Kilvády on 3/5/16.
@@ -9,16 +9,19 @@
 import UIKit
 import CoreData
 
-private let _kReuseId = "UserCell"
+private let _kReuseId = "AlbumCell"
 
-class UsersTableViewController: UITableViewController {
-    private let _model = Model()
+class AlbumsTableViewController: UITableViewController {
+    weak var model: Model!
+    var userId: Int16 = -1
     private var _fetchedResultsController: NSFetchedResultsController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _model.setupUsers {
-            print("users added to db.")
+        if model.isEmptyAlbums() {
+            model.setupAlbums {
+                print("albums added to db.")
+            }
         }
     }
 
@@ -32,11 +35,11 @@ class UsersTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as! UserEntity
-            let controller = segue.destinationViewController as! AlbumsTableViewController
-            controller.model = _model
-            controller.userId = user.userId
-            controller.navigationItem.title = user.name
+            let album = self.fetchedResultsController.objectAtIndexPath(indexPath) as! AlbumEntity
+            let controller = segue.destinationViewController as! PhotosTableViewController
+            controller.model = model
+            controller.albumId = album.albumId
+            controller.navigationItem.title = album.title
         }
     }
 
@@ -53,23 +56,21 @@ class UsersTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(_kReuseId, forIndexPath: indexPath) as! UserTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(_kReuseId, forIndexPath: indexPath)
         _configureCell(cell, atIndexPath: indexPath)
         return cell
     }
 
-    private func _configureCell(cell: UserTableViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as? UserEntity {
-            cell.nameLabel.text = user.name
-            cell.emailLabel.text = user.email
-            cell.catchPhraseLabel.text = user.catchPhrase
+    private func _configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let album = self.fetchedResultsController.objectAtIndexPath(indexPath) as? AlbumEntity {
+            cell.textLabel?.text = album.title
         }
     }
 }
 
 
 // MARK: - Fetched results controller
-extension UsersTableViewController: NSFetchedResultsControllerDelegate {
+extension AlbumsTableViewController: NSFetchedResultsControllerDelegate {
 
     var fetchedResultsController: NSFetchedResultsController {
         if _fetchedResultsController != nil {
@@ -79,20 +80,22 @@ extension UsersTableViewController: NSFetchedResultsControllerDelegate {
         let moc = CoreDataManager.instance.managedContext
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("UserEntity", inManagedObjectContext: moc)
+        let entity = NSEntityDescription.entityForName("AlbumEntity", inManagedObjectContext: moc)
         fetchRequest.entity = entity
 
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
 
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "userId", ascending: true)
-
+        let sortDescriptor = NSSortDescriptor(key: "albumId", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
+
+        let pred = NSPredicate(format: "userId == %d", self.userId)
+        fetchRequest.predicate = pred
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: "Users")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc , sectionNameKeyPath: nil, cacheName: "Albums")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
 
@@ -143,9 +146,6 @@ extension UsersTableViewController: NSFetchedResultsControllerDelegate {
         self.tableView.endUpdates()
     }
 */
-
-    // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
-
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         // In the simplest, most efficient, case, reload the table view.
         self.tableView.reloadData()
