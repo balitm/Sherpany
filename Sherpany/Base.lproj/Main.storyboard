@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -103,7 +104,7 @@
                                     <outlet property="catchPhraseLabel" destination="9EB-na-vcI" id="wll-ax-adf"/>
                                     <outlet property="emailLabel" destination="Jfd-Mn-1BX" id="9jQ-gk-l4y"/>
                                     <outlet property="nameLabel" destination="hf2-FQ-cba" id="IlL-Qg-NkW"/>
-                                    <segue destination="ZZj-Wd-7ux" kind="show" id="D0B-TX-kcl"/>
+                                    <segue destination="ZZj-Wd-7ux" kind="show" identifier="albumsSegue" id="D0B-TX-kcl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -138,7 +139,7 @@
                                             <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=regular">
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -147,7 +148,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="i2B-6Y-efy" kind="show" id="Mpu-XZ-6F0"/>
+                                    <segue destination="i2B-6Y-efy" kind="show" identifier="photosSegue" id="Mpu-XZ-6F0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -172,10 +173,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" id="Jej-Bj-OMI" customClass="PhotosTableViewCell" customModule="Sherpany" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="155"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jej-Bj-OMI" id="JIX-mB-bGt">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rGS-MW-Yvh">
@@ -200,7 +201,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBW-Od-FDh">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -217,11 +218,11 @@
                                             <exclude reference="gBW-Od-FDh"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <exclude reference="Mxs-Ew-bTp"/>
-                                            <exclude reference="pDi-t8-dbk"/>
                                             <exclude reference="hwf-12-AjE"/>
                                             <exclude reference="kYG-FV-NUf"/>
                                             <exclude reference="xYt-EU-Svo"/>
+                                            <exclude reference="Mxs-Ew-bTp"/>
+                                            <exclude reference="pDi-t8-dbk"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=regular">
@@ -230,11 +231,11 @@
                                             <include reference="gBW-Od-FDh"/>
                                         </mask>
                                         <mask key="constraints">
-                                            <include reference="Mxs-Ew-bTp"/>
-                                            <include reference="pDi-t8-dbk"/>
                                             <include reference="hwf-12-AjE"/>
                                             <include reference="kYG-FV-NUf"/>
                                             <include reference="xYt-EU-Svo"/>
+                                            <include reference="Mxs-Ew-bTp"/>
+                                            <include reference="pDi-t8-dbk"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

@@ -9,25 +9,28 @@
 import Foundation
 
 class ModelNet {
+    // URLs to JSOn data web services.
     private static let kUsersURL = "http://jsonplaceholder.typicode.com/users"
     private static let kAlbumsURL = "http://jsonplaceholder.typicode.com/albums"
     private static let kPhotosURL = "http://jsonplaceholder.typicode.com/photos"
 
+    // Errors to handle via throw/catch.
     enum Error: ErrorType {
         case URLFormat
     }
 
-    enum Status: Int {
+    // Possible network statuses.
+    enum Status {
         case kNetNoop
-        case kNetChecking
         case kNetExecuting
         case kNetFinished
-        case kNetReady
-        case kNetNoNet
         case kNetNoHost
     }
 
     var status = Status.kNetNoop
+
+
+    // MARK: - Async download and process JSON data of users, albums and photos.
 
     func downloadPicture(url: String, finished: (pictureData: NSData?) -> Void) throws {
         guard let pictureURL = NSURL(string: url) else {
@@ -106,6 +109,9 @@ class ModelNet {
             }
         })
     }
+
+
+    // MARK: - private helpers to process JSON data of users, albums and photos.
 
     private func _processUsersJson(data: NSData) -> [UserData]? {
         do {

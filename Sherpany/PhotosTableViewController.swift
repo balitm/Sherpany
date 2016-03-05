@@ -19,6 +19,8 @@ class PhotosTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Download and set up the data of the photos in database.
         if model.isEmptyPhotos() {
             model.setupPhotos {
                 print("photo info added to db.")
@@ -49,14 +51,18 @@ class PhotosTableViewController: UITableViewController {
         return cell
     }
 
+    // Configure a PhotosTableViewCell.
     private func _configureCell(cell: PhotosTableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let photo = self.fetchedResultsController.objectAtIndexPath(indexPath) as? PhotoEntity {
             cell.titleLabel.text = photo.title
             if photo.thumbnail == nil {
+                // No image data yet, dowload it now. When the async download is
+                // finished the fetchedResultController will update this cell.
                 model.addPicture(photo, finished: {
                     print("Thumbnail \(photo.thumbnailUrl) downloaded.")
                 })
             } else {
+                // Set up the image from the database.
                 cell.thumbnail.image = UIImage(data: photo.thumbnail!)
             }
         }

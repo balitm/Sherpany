@@ -17,6 +17,8 @@ class UsersTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Download and set up the data of the users in database.
         model.setupUsers {
             print("users added to db.")
         }
@@ -30,7 +32,9 @@ class UsersTableViewController: UITableViewController {
 
     // MARK: - Segues
 
+    // Prepare for showing albums data.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        assert(segue.identifier == "albumsSegue")
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as! UserEntity
             let controller = segue.destinationViewController as! AlbumsTableViewController
@@ -58,6 +62,7 @@ class UsersTableViewController: UITableViewController {
         return cell
     }
 
+    // Configure a UsersTableViewCell.
     private func _configureCell(cell: UsersTableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as? UserEntity {
             cell.nameLabel.text = user.name

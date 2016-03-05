@@ -18,6 +18,8 @@ class AlbumsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Download and set up the data of the albums in database.
         if model.isEmptyAlbums() {
             model.setupAlbums {
                 print("albums added to db.")
@@ -33,7 +35,9 @@ class AlbumsTableViewController: UITableViewController {
 
     // MARK: - Segues
 
+    // Prepare for showing albums data.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        assert(segue.identifier == "photosSegue")
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let album = self.fetchedResultsController.objectAtIndexPath(indexPath) as! AlbumEntity
             let controller = segue.destinationViewController as! PhotosTableViewController
@@ -61,6 +65,7 @@ class AlbumsTableViewController: UITableViewController {
         return cell
     }
 
+    // Configure a basic UITableViewCell for an album entity.
     private func _configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         if let album = self.fetchedResultsController.objectAtIndexPath(indexPath) as? AlbumEntity {
             cell.textLabel?.text = album.title

@@ -44,8 +44,6 @@
 		29FF77B21C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
 		29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
 		29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
-		29FF77B61C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */; };
-		29FF77B71C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +87,6 @@
 		29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Sherpany/CoreDataManager.swift; sourceTree = "<group>"; };
 		29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoEntity.swift; path = Sherpany/PhotoEntity.swift; sourceTree = "<group>"; };
 		29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PhotoEntity+CoreDataProperties.swift"; path = "Sherpany/PhotoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Sherpany/CoreDataHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +166,6 @@
 				296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */,
 				296DB5F31C89EA9C005D53CD /* UserEntity.swift */,
 				296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */,
-				29FF77B51C8A14AC00A9C469 /* CoreDataHelper.swift */,
 			);
 			name = CoreData;
 			path = ..;
@@ -308,7 +304,6 @@
 				296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
 				29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */,
 				29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
-				29FF77B61C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */,
 				293F99F61C88AB0B00C10A59 /* AppDelegate.swift in Sources */,
 				296DB5F51C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
 				293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */,
@@ -332,7 +327,6 @@
 				296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
 				29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */,
 				29F97C841C8AE056005A5276 /* UsersTableViewController.swift in Sources */,
-				29FF77B71C8A14AC00A9C469 /* CoreDataHelper.swift in Sources */,
 				296DB5F61C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
 				296DB5D21C89CC05005D53CD /* ModelNet.swift in Sources */,
 				29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,

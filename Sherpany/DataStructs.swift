@@ -6,6 +6,8 @@
 //  Copyright © 2016 kil-dev. All rights reserved.
 //
 
+// Structs to hold data between JSON and core data entities.
+
 struct UserData {
     var userId: Int16 = -1
     var name: String = ""

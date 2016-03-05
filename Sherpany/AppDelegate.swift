@@ -13,14 +13,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let _model = Model()
 
+    // Model object of the application.
+    let _model = Model()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         CoreDataManager.initialize(self.managedObjectContext)
         if let navController = window?.rootViewController as? UINavigationController {
             let usersController = navController.topViewController as? UsersTableViewController
+
+            // Set the network event indicator delegate of the model.
             _model.indicatorDelegate = self
+
+            // Set the model for the "main"/users controller.
             usersController?.model = _model
         }
         return true
@@ -98,6 +103,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
 }
+
+
+// MARK: - ModelNetworkIndicatorDelegate extension.
 
 extension AppDelegate: ModelNetworkIndicatorDelegate {
     func show() {

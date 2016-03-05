@@ -8,16 +8,19 @@
 
 import Foundation
 
+// Protocol to delegate network start and stop events.
 protocol ModelNetworkIndicatorDelegate: class {
     func show()
     func hide()
 }
 
+// Model class.
 class Model {
     private let _net = ModelNet()
     weak var indicatorDelegate: ModelNetworkIndicatorDelegate! = nil
 
 
+    // Donload user (JSON) data and it to datatbase.
     func setupUsers(finished: () -> Void) {
         indicatorDelegate.show()
         do {
@@ -40,6 +43,7 @@ class Model {
         }
     }
 
+    // Donload albums (JSON) data and it to datatbase.
     func setupAlbums(finished: () -> Void) {
         indicatorDelegate.show()
         do {
@@ -62,6 +66,7 @@ class Model {
         }
     }
 
+    // Donload photos (JSON) data and it to datatbase.
     func setupPhotos(finished: () -> Void) {
         indicatorDelegate.show()
         do {
@@ -84,6 +89,8 @@ class Model {
         }
     }
 
+    // Download a thumbnail photo picture from URL of a photo (JSON) data and
+    // add it to the database.
     func addPicture(photo: PhotoEntity, finished: () -> Void) {
         do {
             indicatorDelegate.show()
@@ -104,10 +111,12 @@ class Model {
         }
     }
 
+    // Return if the albums database (AlbumEntity) is empty.
     func isEmptyAlbums() -> Bool {
         return CoreDataManager.instance.isEmpty("AlbumEntity")
     }
 
+    // Return if the photos database (PhotoEntity) is empty.
     func isEmptyPhotos() -> Bool {
         return CoreDataManager.instance.isEmpty("PhotoEntity")
     }
