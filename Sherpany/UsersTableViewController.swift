@@ -11,6 +11,8 @@ import CoreData
 
 
 class UsersTableViewController: BaseTableViewController {
+    let searchController = UISearchController(searchResultsController: nil)
+
     required convenience init?(coder aDecoder: NSCoder) {
         self.init(coder: aDecoder, reuseId: "UserCell", entityName: "UserEntity", sortKey: "userId")
     }
@@ -22,6 +24,19 @@ class UsersTableViewController: BaseTableViewController {
         model.setupUsers {
             print("users added to db.")
         }
+
+        // Setup the search bar.
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+
+        // Put the search bar into the navigation bar.
+        searchController.searchBar.sizeToFit()
+        navigationItem.titleView = searchController.searchBar
+
+        // Avoid hiding the navigation bar when presenting the search interface.
+        searchController.hidesNavigationBarDuringPresentation = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,5 +72,24 @@ class UsersTableViewController: BaseTableViewController {
             userCell.emailLabel.text = user.email
             userCell.catchPhraseLabel.text = user.catchPhrase
         }
+    }
+}
+
+extension UsersTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        var pred: NSPredicate? = nil
+        if !searchText.isEmpty {
+            pred = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
+        }
+        changePredicate(pred)
+    }
+}
+
+extension UsersTableViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        changePredicate(nil)
     }
 }

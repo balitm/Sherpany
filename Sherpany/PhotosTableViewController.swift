@@ -28,6 +28,8 @@ class PhotosTableViewController: BaseTableViewController {
             model.setupPhotos {
                 print("photo info added to db.")
             }
+        } else if tableView(tableView, numberOfRowsInSection: 0) == 0 {
+            refreshFetch()
         }
     }
 

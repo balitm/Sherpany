@@ -14,6 +14,7 @@ class BaseTableViewController: UITableViewController {
     var kReuseId: String
     var kEntityName: String
     var kSortKey: String
+    var kCacheName: String
     var predicate: NSPredicate?
     private var _fetchedResultsController: NSFetchedResultsController? = nil
 
@@ -22,6 +23,7 @@ class BaseTableViewController: UITableViewController {
         kReuseId = "Unknown"
         kEntityName = "Unknown"
         kSortKey = "Unknown"
+        kCacheName = kEntityName
         super.init(coder: aDecoder)
     }
 
@@ -29,6 +31,7 @@ class BaseTableViewController: UITableViewController {
         kReuseId = reuseId
         kEntityName = entityName
         kSortKey = sortKey
+        kCacheName = entityName
         predicate = nil
         super.init(coder: aDecoder)
     }
@@ -86,21 +89,38 @@ extension BaseTableViewController: NSFetchedResultsControllerDelegate {
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: "Users")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: kCacheName)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
 
+        _performFetch()
+
+        return _fetchedResultsController!
+    }
+
+    private func _performFetch() {
         do {
             try _fetchedResultsController!.performFetch()
         } catch let error as NSError {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate.
-            // You should not use this function in a shipping application, although it may be useful during development.
             print("Unresolved error \(error), \(error.userInfo)")
             abort()
         }
+    }
 
-        return _fetchedResultsController!
+    func refreshFetch() {
+        NSFetchedResultsController.deleteCacheWithName(kCacheName)
+        _performFetch()
+        tableView.reloadData()
+    }
+
+    func changePredicate(predicate: NSPredicate?) {
+        guard let fetchedResultsController = _fetchedResultsController else {
+            return
+        }
+        NSFetchedResultsController.deleteCacheWithName(kCacheName)
+        fetchedResultsController.fetchRequest.predicate = predicate == nil ? self.predicate : predicate;
+        _performFetch()
+        tableView.reloadData()
     }
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -135,8 +155,4 @@ extension BaseTableViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
-//    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-//        // In the simplest, most efficient, case, reload the table view.
-//        self.tableView.reloadData()
-//    }
 }

@@ -51,7 +51,9 @@ class ModelNet {
     }
 
     func downloadUsers(finished: (users: [UserData]?) -> Void) throws {
-        assert(status == Status.kNetFinished || status == Status.kNetNoop)
+        if status != Status.kNetFinished && status != Status.kNetNoop {
+            return
+        }
         guard let usersURL = NSURL(string: ModelNet.kUsersURL) else {
             throw Error.URLFormat
         }
@@ -71,7 +73,9 @@ class ModelNet {
     }
 
     func downloadAlbums(finished: (albums: [AlbumData]?) -> Void) throws {
-        assert(status == Status.kNetFinished || status == Status.kNetNoop)
+        if status != Status.kNetFinished && status != Status.kNetNoop {
+            return
+        }
         guard let albumsURL = NSURL(string: ModelNet.kAlbumsURL) else {
             throw Error.URLFormat
         }
@@ -91,7 +95,9 @@ class ModelNet {
     }
 
     func downloadPhotos(finished: (photos: [PhotoData]?) -> Void) throws {
-        assert(status == Status.kNetFinished || status == Status.kNetNoop)
+        if status != Status.kNetFinished && status != Status.kNetNoop {
+            return
+        }
         guard let photosURL = NSURL(string: ModelNet.kPhotosURL) else {
             throw Error.URLFormat
         }

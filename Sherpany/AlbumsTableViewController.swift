@@ -27,6 +27,8 @@ class AlbumsTableViewController: BaseTableViewController {
             model.setupAlbums {
                 print("albums added to db.")
             }
+        } else if tableView(tableView, numberOfRowsInSection: 0) == 0 {
+            tableView.reloadData()
         }
     }
 

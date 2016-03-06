@@ -114,6 +114,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Users" id="v5G-JU-Fj2"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bG2-OU-NYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
