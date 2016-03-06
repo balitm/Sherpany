@@ -21,8 +21,12 @@ class UsersTableViewController: BaseTableViewController {
         super.viewDidLoad()
 
         // Download and set up the data of the users in database.
-        model.setupUsers {
-            print("users added to db.")
+        if model.isEmptyUsers() {
+            model.setupUsers {
+                print("users added to db.")
+            }
+        } else if tableView(tableView, numberOfRowsInSection: 0) == 0 {
+            refreshFetch()
         }
 
         // Setup the search bar.

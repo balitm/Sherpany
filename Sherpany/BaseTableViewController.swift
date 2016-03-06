@@ -89,6 +89,7 @@ extension BaseTableViewController: NSFetchedResultsControllerDelegate {
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
+        NSFetchedResultsController.deleteCacheWithName(kCacheName)
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: kCacheName)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
