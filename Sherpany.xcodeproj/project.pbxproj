@@ -13,6 +13,8 @@
 		293F9A001C88AB0B00C10A59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 293F99FF1C88AB0B00C10A59 /* Assets.xcassets */; };
 		293F9A031C88AB0B00C10A59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293F9A011C88AB0B00C10A59 /* LaunchScreen.storyboard */; };
 		293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */; };
+		29565EB11C8C4061006E9BAF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29565EB01C8C4061006E9BAF /* BaseTableViewController.swift */; };
+		29565EB21C8C4061006E9BAF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29565EB01C8C4061006E9BAF /* BaseTableViewController.swift */; };
 		296DB5CF1C89AFE0005D53CD /* ModelNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */; };
 		296DB5D11C89CC05005D53CD /* ModelNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* ModelNet.swift */; };
 		296DB5D21C89CC05005D53CD /* ModelNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* ModelNet.swift */; };
@@ -71,6 +73,7 @@
 		294A2E591C8B310400464497 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		294A2E5A1C8B319300464497 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		294A2E5B1C8B319300464497 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		29565EB01C8C4061006E9BAF /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelNetTests.swift; sourceTree = "<group>"; };
 		296DB5D01C89CC05005D53CD /* ModelNet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelNet.swift; path = Sherpany/ModelNet.swift; sourceTree = "<group>"; };
 		296DB5EE1C89EA81005D53CD /* DataStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStructs.swift; path = Sherpany/DataStructs.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				296DB5CA1C89AD3C005D53CD /* Model */,
 				296DB5C91C89A875005D53CD /* CoreData */,
 				293F99F51C88AB0B00C10A59 /* AppDelegate.swift */,
+				29565EB01C8C4061006E9BAF /* BaseTableViewController.swift */,
 				29F97C821C8AE056005A5276 /* UsersTableViewController.swift */,
 				297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */,
 				2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */,
@@ -292,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29565EB11C8C4061006E9BAF /* BaseTableViewController.swift in Sources */,
 				29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */,
 				29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,
 				29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */,
@@ -316,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29565EB21C8C4061006E9BAF /* BaseTableViewController.swift in Sources */,
 				29AA57171C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */,
 				296DB5F81C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */,
 				296DB5CF1C89AFE0005D53CD /* ModelNetTests.swift in Sources */,
