@@ -8,11 +8,15 @@
 
 import Foundation
 
-class ModelNet {
+protocol JsonURLs {
+    var kUsersURL: NSURL { get }
+    var kAlbumsURL: NSURL { get }
+    var kPhotosURL: NSURL { get }
+}
+
+class ModelNet : ModelNetworkDownload {
     // URLs to JSOn data web services.
-    private static let kUsersURL = "http://jsonplaceholder.typicode.com/users"
-    private static let kAlbumsURL = "http://jsonplaceholder.typicode.com/albums"
-    private static let kPhotosURL = "http://jsonplaceholder.typicode.com/photos"
+    private let _URLs: JsonURLs
 
     // Errors to handle via throw/catch.
     enum Error: ErrorType {
@@ -30,37 +34,20 @@ class ModelNet {
     var status = Status.kNetNoop
 
 
-    // MARK: - Async download and process JSON data of users, albums and photos.
-
-    func downloadPicture(url: String, finished: (pictureData: NSData?) -> Void) throws {
-        guard let pictureURL = NSURL(string: url) else {
-            throw Error.URLFormat
-        }
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        status = Status.kNetExecuting
-        dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: pictureURL) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    finished(pictureData: data)
-                    self.status = Status.kNetFinished
-                }
-            } else {
-                self.status = Status.kNetNoHost
-            }
-        })
+    init(URLs: JsonURLs) {
+        _URLs = URLs
     }
 
-    func downloadUsers(finished: (users: [UserData]?) -> Void) throws {
+    // MARK: - Async download and process JSON data of users, albums and photos.
+
+    func downloadUsers(finished: (users: [UserData]?) -> Void) {
         if status != Status.kNetFinished && status != Status.kNetNoop {
             return
         }
-        guard let usersURL = NSURL(string: ModelNet.kUsersURL) else {
-            throw Error.URLFormat
-        }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: usersURL) {
+            if let data = NSData(contentsOfURL: self._URLs.kUsersURL) {
                 let users = self._processUsersJson(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     finished(users: users)
@@ -72,17 +59,14 @@ class ModelNet {
         })
     }
 
-    func downloadAlbums(finished: (albums: [AlbumData]?) -> Void) throws {
+    func downloadAlbums(finished: (albums: [AlbumData]?) -> Void) {
         if status != Status.kNetFinished && status != Status.kNetNoop {
             return
-        }
-        guard let albumsURL = NSURL(string: ModelNet.kAlbumsURL) else {
-            throw Error.URLFormat
         }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: albumsURL) {
+            if let data = NSData(contentsOfURL: self._URLs.kAlbumsURL) {
                 let albums = self._processAlbumsJson(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     finished(albums: albums)
@@ -94,20 +78,32 @@ class ModelNet {
         })
     }
 
-    func downloadPhotos(finished: (photos: [PhotoData]?) -> Void) throws {
+    func downloadPhotos(finished: (photos: [PhotoData]?) -> Void) {
         if status != Status.kNetFinished && status != Status.kNetNoop {
             return
-        }
-        guard let photosURL = NSURL(string: ModelNet.kPhotosURL) else {
-            throw Error.URLFormat
         }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: photosURL) {
+            if let data = NSData(contentsOfURL: self._URLs.kPhotosURL) {
                 let photos = self._processPhotosJson(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     finished(photos: photos)
+                    self.status = Status.kNetFinished
+                }
+            } else {
+                self.status = Status.kNetNoHost
+            }
+        })
+    }
+
+    func downloadPicture(url: NSURL, finished: (pictureData: NSData?) -> Void) {
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        status = Status.kNetExecuting
+        dispatch_async(dispatch_get_global_queue(priority, 0), {
+            if let data = NSData(contentsOfURL: url) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    finished(pictureData: data)
                     self.status = Status.kNetFinished
                 }
             } else {

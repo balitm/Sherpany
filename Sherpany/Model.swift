@@ -14,101 +14,95 @@ protocol ModelNetworkIndicatorDelegate: class {
     func hide()
 }
 
+protocol ModelNetworkDownload {
+    func downloadUsers(finished: (users: [UserData]?) -> Void)
+    func downloadAlbums(finished: (albums: [AlbumData]?) -> Void)
+    func downloadPhotos(finished: (photos: [PhotoData]?) -> Void)
+    func downloadPicture(url: NSURL, finished: (pictureData: NSData?) -> Void)
+}
+
 // Model class.
 class Model {
-    private let _net = ModelNet()
-    weak var indicatorDelegate: ModelNetworkIndicatorDelegate! = nil
+    let net: ModelNetworkDownload
+    weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil
 
+    init(downloader: ModelNetworkDownload) {
+        self.net = downloader
+    }
 
     // Donload user (JSON) data and it to datatbase.
     func setupUsers(finished: () -> Void) {
-        indicatorDelegate.show()
-        do {
-            try _net.downloadUsers { (result) -> Void in
-                if let users = result {
-                    let cdm = CoreDataManager.instance
-                    for user in users {
-                        cdm.createUserEntity(user)
-                    }
-                    cdm.saveContext()
-                } else {
-                    assert(false, "No users downloaded.")
+        indicatorDelegate?.show()
+        net.downloadUsers { (result) -> Void in
+            if let users = result {
+                let cdm = CoreDataManager.instance
+                for user in users {
+                    cdm.createUserEntity(user)
                 }
-                self.indicatorDelegate.hide()
-                finished();
+                cdm.saveContext()
+            } else {
+                assert(false, "No users downloaded.")
             }
-        } catch {
-            indicatorDelegate.hide()
-            assert(false, "No users downloaded.")
+            self.indicatorDelegate?.hide()
+            finished();
         }
     }
 
     // Donload albums (JSON) data and it to datatbase.
     func setupAlbums(finished: () -> Void) {
-        indicatorDelegate.show()
-        do {
-            try _net.downloadAlbums { (result) -> Void in
-                if let albums = result {
-                    let cdm = CoreDataManager.instance
-                    for album in albums {
-                        cdm.createAlbumEntity(album)
-                    }
-                    cdm.saveContext()
-                } else {
-                    assert(false, "No albums downloaded.")
+        indicatorDelegate?.show()
+        net.downloadAlbums { (result) -> Void in
+            if let albums = result {
+                let cdm = CoreDataManager.instance
+                for album in albums {
+                    cdm.createAlbumEntity(album)
                 }
-                self.indicatorDelegate.hide()
-                finished();
+                cdm.saveContext()
+            } else {
+                assert(false, "No albums downloaded.")
             }
-        } catch {
-            indicatorDelegate.hide()
-            assert(false, "No albums downloaded.")
+            self.indicatorDelegate?.hide()
+            finished();
         }
     }
 
     // Donload photos (JSON) data and it to datatbase.
     func setupPhotos(finished: () -> Void) {
-        indicatorDelegate.show()
-        do {
-            try _net.downloadPhotos { (result) -> Void in
-                if let photos = result {
-                    let cdm = CoreDataManager.instance
-                    for photo in photos {
-                        cdm.createPhotoEntity(photo)
-                    }
-                    cdm.saveContext()
-                } else {
-                    assert(false, "No photos downloaded.")
+        indicatorDelegate?.show()
+        net.downloadPhotos { (result) -> Void in
+            if let photos = result {
+                let cdm = CoreDataManager.instance
+                for photo in photos {
+                    cdm.createPhotoEntity(photo)
                 }
-                self.indicatorDelegate.hide()
-                finished();
+                cdm.saveContext()
+            } else {
+                assert(false, "No photos downloaded.")
             }
-        } catch {
-            indicatorDelegate.hide()
-            assert(false, "No photos downloaded.")
+            self.indicatorDelegate?.hide()
+            finished();
         }
     }
 
     // Download a thumbnail photo picture from URL of a photo (JSON) data and
     // add it to the database.
     func addPicture(photo: PhotoEntity, finished: () -> Void) {
-        do {
-            indicatorDelegate.show()
-            try _net.downloadPicture(photo.thumbnailUrl!, finished: { (pictureData: NSData?) -> Void in
-                if let data = pictureData {
-                    let cdm = CoreDataManager.instance
-                    photo.thumbnail = data
-                    cdm.saveContext()
-                } else {
-                    assert(false, "No thubnail downloaded.")
-                }
-                self.indicatorDelegate.hide()
-                finished()
-            })
-        } catch {
-            indicatorDelegate.hide()
-            assert(false, "No thubnail downloaded.")
+        indicatorDelegate?.show()
+        guard let url = NSURL(string: photo.thumbnailUrl!) else {
+            assert(false)
+            return
         }
+        net.downloadPicture(url, finished: { (pictureData: NSData?) -> Void in
+            if let data = pictureData {
+                let cdm = CoreDataManager.instance
+                photo.thumbnail = data
+                cdm.saveContext()
+            } else {
+                assert(false, "No thubnail downloaded.")
+            }
+            self.indicatorDelegate?.hide()
+            finished()
+        })
     }
 
     // Return if the user database (UserEntity) is empty.

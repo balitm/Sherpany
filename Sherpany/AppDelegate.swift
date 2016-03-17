@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     // Model object of the application.
-    let _model = Model()
+    let _model = Model(downloader: ModelNet(URLs: HttpJsonURLs()))
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         CoreDataManager.initialize(self.managedObjectContext)
