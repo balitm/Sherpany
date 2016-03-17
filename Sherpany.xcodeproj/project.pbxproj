@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		29017C6B1C9AC18A00B0FABE /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C681C9AC18A00B0FABE /* albums.json */; };
-		29017C6C1C9AC18A00B0FABE /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C691C9AC18A00B0FABE /* photos.json */; };
-		29017C6D1C9AC18A00B0FABE /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C6A1C9AC18A00B0FABE /* users.json */; };
 		29017C6F1C9AC81A00B0FABE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C6E1C9AC81A00B0FABE /* Config.swift */; };
-		29017C701C9AC81A00B0FABE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C6E1C9AC81A00B0FABE /* Config.swift */; };
+		29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */; };
+		29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C731C9AD51900B0FABE /* CoreDataTests.swift */; };
+		29017C781C9AE7B700B0FABE /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C751C9AE7B700B0FABE /* albums.json */; };
+		29017C791C9AE7B700B0FABE /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C761C9AE7B700B0FABE /* photos.json */; };
+		29017C7A1C9AE7B700B0FABE /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C771C9AE7B700B0FABE /* users.json */; };
 		293F99F61C88AB0B00C10A59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F99F51C88AB0B00C10A59 /* AppDelegate.swift */; };
 		293F99FB1C88AB0B00C10A59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293F99F91C88AB0B00C10A59 /* Main.storyboard */; };
 		293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 293F99FC1C88AB0B00C10A59 /* Sherpany.xcdatamodeld */; };
@@ -20,38 +21,22 @@
 		293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */; };
 		2951635D1C99A43300B94281 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2951635C1C99A43300B94281 /* ModelTests.swift */; };
 		29565EB11C8C4061006E9BAF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29565EB01C8C4061006E9BAF /* BaseTableViewController.swift */; };
-		29565EB21C8C4061006E9BAF /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29565EB01C8C4061006E9BAF /* BaseTableViewController.swift */; };
 		296DB5CF1C89AFE0005D53CD /* ModelNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */; };
 		296DB5D11C89CC05005D53CD /* ModelNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* ModelNet.swift */; };
-		296DB5D21C89CC05005D53CD /* ModelNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* ModelNet.swift */; };
 		296DB5EF1C89EA81005D53CD /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5EE1C89EA81005D53CD /* DataStructs.swift */; };
-		296DB5F01C89EA81005D53CD /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5EE1C89EA81005D53CD /* DataStructs.swift */; };
 		296DB5F51C89EA9C005D53CD /* AlbumEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */; };
-		296DB5F61C89EA9C005D53CD /* AlbumEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */; };
 		296DB5F71C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
-		296DB5F81C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
 		296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
-		296DB5FA1C89EA9C005D53CD /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
 		296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
-		296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
 		297376191C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */; };
-		2973761A1C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */; };
 		2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */; };
-		2973761D1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */; };
 		29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */; };
-		29AA57171C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */; };
 		29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
-		29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
-		29F97C841C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
 		29F97C871C8AE441005A5276 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C861C8AE441005A5276 /* UsersTableViewCell.swift */; };
-		29F97C881C8AE441005A5276 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C861C8AE441005A5276 /* UsersTableViewCell.swift */; };
 		29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
-		29FF77AE1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
 		29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
-		29FF77B21C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
 		29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
-		29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		29017C681C9AC18A00B0FABE /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = albums.json; path = ../../../../Downloads/albums.json; sourceTree = "<group>"; };
-		29017C691C9AC18A00B0FABE /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos.json; path = ../../../../Downloads/photos.json; sourceTree = "<group>"; };
-		29017C6A1C9AC18A00B0FABE /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = users.json; path = ../../../../Downloads/users.json; sourceTree = "<group>"; };
 		29017C6E1C9AC81A00B0FABE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		29017C731C9AD51900B0FABE /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		29017C751C9AE7B700B0FABE /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
+		29017C761C9AE7B700B0FABE /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos.json; sourceTree = "<group>"; };
+		29017C771C9AE7B700B0FABE /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		293F99F21C88AB0B00C10A59 /* Sherpany.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sherpany.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		293F99F51C88AB0B00C10A59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		293F99FA1C88AB0B00C10A59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -165,12 +152,14 @@
 		293F9A0C1C88AB0B00C10A59 /* SherpanyTests */ = {
 			isa = PBXGroup;
 			children = (
+				29017C751C9AE7B700B0FABE /* albums.json */,
+				29017C761C9AE7B700B0FABE /* photos.json */,
+				29017C771C9AE7B700B0FABE /* users.json */,
 				293F9A0D1C88AB0B00C10A59 /* SherpanyTests.swift */,
 				2951635C1C99A43300B94281 /* ModelTests.swift */,
 				296DB5CE1C89AFE0005D53CD /* ModelNetTests.swift */,
-				29017C681C9AC18A00B0FABE /* albums.json */,
-				29017C691C9AC18A00B0FABE /* photos.json */,
-				29017C6A1C9AC18A00B0FABE /* users.json */,
+				29017C731C9AD51900B0FABE /* CoreDataTests.swift */,
+				29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */,
 				293F9A0F1C88AB0B00C10A59 /* Info.plist */,
 			);
 			path = SherpanyTests;
@@ -302,9 +291,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29017C6D1C9AC18A00B0FABE /* users.json in Resources */,
-				29017C6C1C9AC18A00B0FABE /* photos.json in Resources */,
-				29017C6B1C9AC18A00B0FABE /* albums.json in Resources */,
+				29017C7A1C9AE7B700B0FABE /* users.json in Resources */,
+				29017C791C9AE7B700B0FABE /* photos.json in Resources */,
+				29017C781C9AE7B700B0FABE /* albums.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,26 +330,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29565EB21C8C4061006E9BAF /* BaseTableViewController.swift in Sources */,
-				29AA57171C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */,
 				2951635D1C99A43300B94281 /* ModelTests.swift in Sources */,
-				296DB5F81C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */,
+				29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */,
 				296DB5CF1C89AFE0005D53CD /* ModelNetTests.swift in Sources */,
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
-				296DB5F01C89EA81005D53CD /* DataStructs.swift in Sources */,
-				29F97C881C8AE441005A5276 /* UsersTableViewCell.swift in Sources */,
-				2973761A1C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */,
-				296DB5FA1C89EA9C005D53CD /* UserEntity.swift in Sources */,
-				296DB5FC1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
-				29F97C7E1C8ADA27005A5276 /* Model.swift in Sources */,
-				29F97C841C8AE056005A5276 /* UsersTableViewController.swift in Sources */,
-				296DB5F61C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
-				296DB5D21C89CC05005D53CD /* ModelNet.swift in Sources */,
-				29FF77B41C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,
-				29FF77AE1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
-				29017C701C9AC81A00B0FABE /* Config.swift in Sources */,
-				29FF77B21C8A0F9500A9C469 /* PhotoEntity.swift in Sources */,
-				2973761D1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */,
+				29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

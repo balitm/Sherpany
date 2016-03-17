@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import Sherpany
 
 
@@ -39,6 +40,7 @@ class ModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        CoreDataManager.initialize(setUpInMemoryManagedObjectContext())
     }
     
     override func tearDown() {
@@ -47,8 +49,57 @@ class ModelTests: XCTestCase {
     }
 
     func testLoadUsers() {
+        let expectation = expectationWithDescription("Async Method")
+
         _model.setupUsers {
             print("Users downloaded.")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: nil)
+
+        let cdm = CoreDataManager.instance
+        let moc = cdm.managedContext
+        let fetch = NSFetchRequest(entityName: "UserEntity")
+
+        do {
+            let fetched = try moc.executeFetchRequest(fetch) as! [UserEntity]
+            XCTAssert(fetched.count == 10)
+            for user in fetched {
+                print("#: \(user.userId)")
+                print("  name: \(user.name)")
+                print("  email: \(user.email)")
+                print("  cqatchPhrase: \(user.catchPhrase)")
+            }
+        } catch {
+            fatalError("Failed to fetch users: \(error)")
+        }
+    }
+
+    func testLoadAlbums() {
+        let expectation = expectationWithDescription("Async Method")
+
+        _model.setupAlbums {
+            print("Albums downloaded.")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: nil)
+
+        let cdm = CoreDataManager.instance
+        let moc = cdm.managedContext
+        let fetch = NSFetchRequest(entityName: "AlbumEntity")
+
+        do {
+            let fetched = try moc.executeFetchRequest(fetch) as! [AlbumEntity]
+            XCTAssert(fetched.count == 100)
+            for album in fetched {
+                print("#: \(album.albumId)")
+                print("  userId: \(album.userId)")
+                print("  name: \(album.title)")
+            }
+        } catch {
+            fatalError("Failed to fetch users: \(error)")
         }
     }
 }
