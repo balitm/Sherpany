@@ -8,39 +8,42 @@
 
 import XCTest
 import CoreData
+import UIKit
 @testable import Sherpany
 
 
 class ModelTests: XCTestCase {
     class FileJsonURLs: JsonURLs {
-        private lazy var _bundle: NSBundle = {
+        lazy var bundle: NSBundle = {
             return NSBundle(forClass: ModelTests.self)
         }()
 
         lazy var kUsersURL: NSURL = {
-            let urlpath = self._bundle.pathForResource("users", ofType: "json")
+            let urlpath = self.bundle.pathForResource("users", ofType: "json")
             let url = NSURL.fileURLWithPath(urlpath!)
             return url
         }()
 
         lazy var kAlbumsURL: NSURL = {
-            let urlpath = self._bundle.pathForResource("albums", ofType: "json")
+            let urlpath = self.bundle.pathForResource("albums", ofType: "json")
             let url = NSURL.fileURLWithPath(urlpath!)
             return url
         }()
 
         lazy var kPhotosURL: NSURL = {
-            let urlpath = self._bundle.pathForResource("photos", ofType: "json")
+            let urlpath = self.bundle.pathForResource("photos", ofType: "json")
             let url = NSURL.fileURLWithPath(urlpath!)
             return url
         }()
     }
 
-    private let _model = Model(downloader: ModelNet(URLs: FileJsonURLs()))
+    private let _urls = FileJsonURLs()
+    private var _model: Model! = nil
 
     override func setUp() {
         super.setUp()
         CoreDataManager.initialize(setUpInMemoryManagedObjectContext())
+        _model = Model(downloader: ModelNet(URLs: _urls))
     }
     
     override func tearDown() {
@@ -101,5 +104,56 @@ class ModelTests: XCTestCase {
         } catch {
             fatalError("Failed to fetch users: \(error)")
         }
+    }
+
+    func testLoadPhotos() {
+        let expectation = expectationWithDescription("Async Method")
+
+        _model.setupPhotos {
+            print("Photos downloaded.")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(5, handler: nil)
+
+        let cdm = CoreDataManager.instance
+        let moc = cdm.managedContext
+        let fetch = NSFetchRequest(entityName: "PhotoEntity")
+
+        do {
+            let fetched = try moc.executeFetchRequest(fetch) as! [PhotoEntity]
+            print("photos: \(fetched.count)")
+            XCTAssert(fetched.count == 5000)
+            for photo in fetched {
+                print("#: \(photo.photoId)")
+                print("  userId: \(photo.albumId)")
+                print("  name: \(photo.title)")
+                print("  name: \(photo.thumbnailUrl)")
+            }
+        } catch {
+            fatalError("Failed to fetch users: \(error)")
+        }
+    }
+
+    func testLoadPicture() {
+        let expectation = expectationWithDescription("Async Method")
+        let urlpath = _urls.bundle.pathForResource("thumbnail", ofType: "png")
+        let url = NSURL.fileURLWithPath(urlpath!)
+        let urlString = url.absoluteString
+        let photoData = PhotoData(photoId: 1000, albumId: 1, title: "Sample", thumbnailUrl: urlString)
+
+        let cdm = CoreDataManager.instance
+        let photoEntity = cdm.createPhotoEntity(photoData)
+
+        _model.addPicture(photoEntity, finished: {
+            print("dowloaded image: \(photoEntity.thumbnailUrl)")
+            expectation.fulfill()
+        })
+
+        waitForExpectationsWithTimeout(5, handler: nil)
+        XCTAssertNotEqual(photoEntity.thumbnail, nil)
+        let img = UIImage(data: photoEntity.thumbnail!)
+        XCTAssertNotEqual(img, nil)
+        XCTAssert(img!.size.width == 150 && img!.size.height == 150)
     }
 }
