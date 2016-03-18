@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Set the model for the "main"/users controller.
             usersController?.model = _model
         }
+        UINavigationBar.appearance().barTintColor = UIColor(red: 75.0/255.0, green: 195.0/255.0, blue: 123.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         return true
     }
 

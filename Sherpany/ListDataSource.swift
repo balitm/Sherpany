@@ -111,7 +111,7 @@ extension ListDataSource: NSFetchedResultsControllerDelegate {
 
     private func _performFetch() {
         do {
-            try _fetchedResultsController!.performFetch()
+            try self.fetchedResultsController.performFetch()
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
             abort()
