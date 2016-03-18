@@ -11,8 +11,14 @@ import CoreData
 
 @objc(PhotoEntity)
 class PhotoEntity: NSManagedObject {
+
+    static var entityName: String {
+        return String(self)
+    }
+
     class func createPhotoEntity(moc: NSManagedObjectContext) -> PhotoEntity {
-        let newItem = NSEntityDescription.insertNewObjectForEntityForName("PhotoEntity", inManagedObjectContext: moc) as! PhotoEntity
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: moc) as! PhotoEntity
         return newItem
     }
+
 }

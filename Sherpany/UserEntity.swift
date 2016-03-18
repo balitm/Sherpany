@@ -11,8 +11,14 @@ import CoreData
 
 
 class UserEntity: NSManagedObject {
+
+    static var entityName: String {
+        return String(self)
+    }
+
     class func createUserEntity(moc: NSManagedObjectContext) -> UserEntity {
-        let newItem = NSEntityDescription.insertNewObjectForEntityForName("UserEntity", inManagedObjectContext: moc) as! UserEntity
+        let newItem = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: moc) as! UserEntity
         return newItem
     }
+
 }

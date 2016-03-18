@@ -1,75 +1,79 @@
 //
-//  BaseTableViewController.swift
+//  ListDataSource.swift
 //  Sherpany
 //
-//  Created by Balázs Kilvády on 3/6/16.
+//  Created by Balázs Kilvády on 3/18/16.
 //  Copyright © 2016 kil-dev. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class BaseTableViewController: UITableViewController {
-    weak var model: Model! = nil
+
+class ListDataSource: NSObject, ListDataSourceProtocol {
+    var managedObjectContext: NSManagedObjectContext?
+    weak var tableView: UITableView!
+
     var kReuseId: String
     var kEntityName: String
     var kSortKey: String
     var kCacheName: String
     var predicate: NSPredicate?
     private var _fetchedResultsController: NSFetchedResultsController? = nil
+    weak var delegate: ListDataSourceDelegate? = nil
 
-    required init?(coder aDecoder: NSCoder) {
-        assert(false)
-        kReuseId = "Unknown"
-        kEntityName = "Unknown"
-        kSortKey = "Unknown"
-        kCacheName = kEntityName
-        super.init(coder: aDecoder)
-    }
 
-    required init?(coder aDecoder: NSCoder, reuseId: String, entityName: String, sortKey: String) {
+    init(reuseId: String, entityName: String, sortKey: String) {
         kReuseId = reuseId
         kEntityName = entityName
         kSortKey = sortKey
         kCacheName = entityName
         predicate = nil
-        super.init(coder: aDecoder)
+        super.init()
     }
 
 
-    // MARK: - Table View
+    // MARK: - Table View Data Source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kReuseId, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
 
-    // Configure a UsersTableViewCell.
+    // Configure a UITableViewCell.
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        delegate?.configureCell(cell, atIndexPath: indexPath)
+    }
+
+    func objectAtIndexPath(indexPath: NSIndexPath) -> AnyObject? {
+        return _fetchedResultsController?.objectAtIndexPath(indexPath)
     }
 }
 
 
 // MARK: - Fetched results controller
 
-extension BaseTableViewController: NSFetchedResultsControllerDelegate {
+extension ListDataSource: NSFetchedResultsControllerDelegate {
 
     var fetchedResultsController: NSFetchedResultsController {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
 
-        let moc = CoreDataManager.instance.managedContext
+        guard let moc = self.managedObjectContext else {
+            assert(false)
+        }
+
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
         let entity = NSEntityDescription.entityForName(kEntityName, inManagedObjectContext: moc)
@@ -99,6 +103,12 @@ extension BaseTableViewController: NSFetchedResultsControllerDelegate {
         return _fetchedResultsController!
     }
 
+    func refetch() {
+        NSFetchedResultsController.deleteCacheWithName(kCacheName)
+        _performFetch()
+        tableView.reloadData()
+    }
+
     private func _performFetch() {
         do {
             try _fetchedResultsController!.performFetch()
@@ -106,22 +116,6 @@ extension BaseTableViewController: NSFetchedResultsControllerDelegate {
             print("Unresolved error \(error), \(error.userInfo)")
             abort()
         }
-    }
-
-    func refreshFetch() {
-        NSFetchedResultsController.deleteCacheWithName(kCacheName)
-        _performFetch()
-        tableView.reloadData()
-    }
-
-    func changePredicate(predicate: NSPredicate?) {
-        guard let fetchedResultsController = _fetchedResultsController else {
-            return
-        }
-        NSFetchedResultsController.deleteCacheWithName(kCacheName)
-        fetchedResultsController.fetchRequest.predicate = predicate == nil ? self.predicate : predicate;
-        _performFetch()
-        tableView.reloadData()
     }
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -155,5 +149,18 @@ extension BaseTableViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
+    }
+}
+
+
+class SearchableListDataSource: ListDataSource, SearchableListDataSourceProtocol {
+    func fetchWithPredicate(predicate: NSPredicate?) {
+        guard let fetchedResultsController = _fetchedResultsController else {
+            return
+        }
+        NSFetchedResultsController.deleteCacheWithName(kCacheName)
+        fetchedResultsController.fetchRequest.predicate = predicate == nil ? self.predicate : predicate;
+        _performFetch()
+        tableView.reloadData()
     }
 }

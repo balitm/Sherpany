@@ -36,7 +36,7 @@ class CoreDataTests: XCTestCase {
         cdm.createUserEntity(user)
 
         let moc = cdm.managedContext
-        let fetch = NSFetchRequest(entityName: "UserEntity")
+        let fetch = NSFetchRequest(entityName: UserEntity.entityName)
 
         do {
             let fetched = try moc.executeFetchRequest(fetch) as! [UserEntity]

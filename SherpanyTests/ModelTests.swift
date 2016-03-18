@@ -63,7 +63,7 @@ class ModelTests: XCTestCase {
 
         let cdm = CoreDataManager.instance
         let moc = cdm.managedContext
-        let fetch = NSFetchRequest(entityName: "UserEntity")
+        let fetch = NSFetchRequest(entityName: UserEntity.entityName)
 
         do {
             let fetched = try moc.executeFetchRequest(fetch) as! [UserEntity]
@@ -91,7 +91,7 @@ class ModelTests: XCTestCase {
 
         let cdm = CoreDataManager.instance
         let moc = cdm.managedContext
-        let fetch = NSFetchRequest(entityName: "AlbumEntity")
+        let fetch = NSFetchRequest(entityName: AlbumEntity.entityName)
 
         do {
             let fetched = try moc.executeFetchRequest(fetch) as! [AlbumEntity]
@@ -118,7 +118,7 @@ class ModelTests: XCTestCase {
 
         let cdm = CoreDataManager.instance
         let moc = cdm.managedContext
-        let fetch = NSFetchRequest(entityName: "PhotoEntity")
+        let fetch = NSFetchRequest(entityName: PhotoEntity.entityName)
 
         do {
             let fetched = try moc.executeFetchRequest(fetch) as! [PhotoEntity]

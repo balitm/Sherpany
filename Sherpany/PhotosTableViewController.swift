@@ -10,18 +10,27 @@ import UIKit
 import CoreData
 
 
-class PhotosTableViewController: BaseTableViewController {
+class PhotosTableViewController: UITableViewController {
+    weak var model: Model! = nil
+    private let _listDataSource: ListDataSourceProtocol
     var albumId: Int16 = -1
 
-    required convenience init?(coder aDecoder: NSCoder) {
-        self.init(coder: aDecoder, reuseId: "PhotoCell", entityName: "PhotoEntity", sortKey: "photoId")
+    required init?(coder aDecoder: NSCoder) {
+        _listDataSource = ListDataSource(reuseId: "PhotoCell", entityName: PhotoEntity.entityName, sortKey: "photoId")
+        super.init(coder: aDecoder)
+        _listDataSource.delegate = self
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Setup the data source object.
+        _listDataSource.managedObjectContext = CoreDataManager.instance.managedContext
+        _listDataSource.tableView = tableView
+        tableView.dataSource = _listDataSource
+
         // Set the predicate for the Core Data fetch.
-        predicate = NSPredicate(format: "albumId == %d", self.albumId)
+        _listDataSource.predicate = NSPredicate(format: "albumId == %d", self.albumId)
 
         // Download and set up the data of the photos in database.
         if model.isEmptyPhotos() {
@@ -29,7 +38,7 @@ class PhotosTableViewController: BaseTableViewController {
                 print("photo info added to db.")
             }
         } else if tableView(tableView, numberOfRowsInSection: 0) == 0 {
-            refreshFetch()
+            _listDataSource.refetch()
         }
     }
 
@@ -37,13 +46,15 @@ class PhotosTableViewController: BaseTableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
 
-    // MARK: - Table View
+// MARK: - ListDataSourceDelegate
 
-    // Configure a PhotosTableViewCell.
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let photo = self.fetchedResultsController.objectAtIndexPath(indexPath) as? PhotoEntity {
+extension PhotosTableViewController: ListDataSourceDelegate {
+    // Configure a UsersTableViewCell.
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let photo = _listDataSource.objectAtIndexPath(indexPath) as? PhotoEntity {
             guard let photoCell = cell as? PhotosTableViewCell else {
                 assert(false)
             }

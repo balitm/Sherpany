@@ -9,18 +9,27 @@
 import UIKit
 import CoreData
 
-class AlbumsTableViewController: BaseTableViewController {
+class AlbumsTableViewController: UITableViewController {
+    weak var model: Model! = nil
     var userId: Int16 = -1
+    private let _listDataSource: ListDataSourceProtocol
 
-    required convenience init?(coder aDecoder: NSCoder) {
-        self.init(coder: aDecoder, reuseId: "AlbumCell", entityName: "AlbumEntity", sortKey: "albumId")
+    required init?(coder aDecoder: NSCoder) {
+        _listDataSource = SearchableListDataSource(reuseId: "AlbumCell", entityName: AlbumEntity.entityName, sortKey: "albumId")
+        super.init(coder: aDecoder)
+        _listDataSource.delegate = self
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Setup the data source object.
+        _listDataSource.managedObjectContext = CoreDataManager.instance.managedContext
+        _listDataSource.tableView = tableView
+        tableView.dataSource = _listDataSource
+
         // Set the predicate for the Core Data fetch.
-        predicate = NSPredicate(format: "userId == %d", self.userId)
+        _listDataSource.predicate = NSPredicate(format: "userId == %d", self.userId)
 
         // Download and set up the data of the albums in database.
         if model.isEmptyAlbums() {
@@ -28,7 +37,7 @@ class AlbumsTableViewController: BaseTableViewController {
                 print("albums added to db.")
             }
         } else if tableView(tableView, numberOfRowsInSection: 0) == 0 {
-            refreshFetch()
+            _listDataSource.refetch()
         }
     }
 
@@ -44,7 +53,7 @@ class AlbumsTableViewController: BaseTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         assert(segue.identifier == "photosSegue")
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            let album = self.fetchedResultsController.objectAtIndexPath(indexPath) as! AlbumEntity
+            let album = _listDataSource.objectAtIndexPath(indexPath) as! AlbumEntity
             let controller = segue.destinationViewController as! PhotosTableViewController
             controller.model = model
             controller.albumId = album.albumId
@@ -52,12 +61,15 @@ class AlbumsTableViewController: BaseTableViewController {
         }
     }
 
+}
 
-    // MARK: - Table View
 
+// MARK: - ListDataSourceDelegate
+
+extension AlbumsTableViewController: ListDataSourceDelegate {
     // Configure a basic UITableViewCell for an album entity.
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let album = self.fetchedResultsController.objectAtIndexPath(indexPath) as? AlbumEntity {
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let album = _listDataSource.objectAtIndexPath(indexPath) as? AlbumEntity {
             cell.textLabel?.text = album.title
         }
     }

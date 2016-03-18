@@ -10,15 +10,24 @@ import UIKit
 import CoreData
 
 
-class UsersTableViewController: BaseTableViewController {
+class UsersTableViewController: UITableViewController {
+    weak var model: Model! = nil
     let searchController = UISearchController(searchResultsController: nil)
+    private let _listDataSource: SearchableListDataSourceProtocol
 
-    required convenience init?(coder aDecoder: NSCoder) {
-        self.init(coder: aDecoder, reuseId: "UserCell", entityName: "UserEntity", sortKey: "userId")
+    required init?(coder aDecoder: NSCoder) {
+        _listDataSource = SearchableListDataSource(reuseId: "UserCell", entityName: UserEntity.entityName, sortKey: "userId")
+        super.init(coder: aDecoder)
+        _listDataSource.delegate = self
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Setup the data source object.
+        _listDataSource.managedObjectContext = CoreDataManager.instance.managedContext
+        _listDataSource.tableView = tableView
+        tableView.dataSource = _listDataSource
 
         // Download and set up the data of the users in database.
         if model.isEmptyUsers() {
@@ -26,7 +35,7 @@ class UsersTableViewController: BaseTableViewController {
                 print("users added to db.")
             }
         } else if tableView(tableView, numberOfRowsInSection: 0) == 0 {
-            refreshFetch()
+            _listDataSource.refetch()
         }
 
         // Setup the search bar.
@@ -55,29 +64,34 @@ class UsersTableViewController: BaseTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         assert(segue.identifier == "albumsSegue")
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as! UserEntity
+            let user = _listDataSource.objectAtIndexPath(indexPath) as! UserEntity
             let controller = segue.destinationViewController as! AlbumsTableViewController
             controller.model = model
             controller.userId = user.userId
             controller.navigationItem.title = user.name
         }
     }
+}
 
 
-    // MARK: - Table View
+// MARK: - ListDataSourceDelegate
 
+extension UsersTableViewController: ListDataSourceDelegate {
     // Configure a UsersTableViewCell.
-    override func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         guard let userCell = cell as? UsersTableViewCell else {
             assert(false)
         }
-        if let user = self.fetchedResultsController.objectAtIndexPath(indexPath) as? UserEntity {
+        if let user = _listDataSource.objectAtIndexPath(indexPath) as? UserEntity {
             userCell.nameLabel.text = user.name
             userCell.emailLabel.text = user.email
             userCell.catchPhraseLabel.text = user.catchPhrase
         }
     }
 }
+
+
+// MARK: - UISearchResultsUpdating
 
 extension UsersTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -88,12 +102,12 @@ extension UsersTableViewController: UISearchResultsUpdating {
         if !searchText.isEmpty {
             pred = NSPredicate(format: "name CONTAINS[cd] %@", searchText)
         }
-        changePredicate(pred)
+        _listDataSource.fetchWithPredicate(pred)
     }
 }
 
 extension UsersTableViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        changePredicate(nil)
+        _listDataSource.fetchWithPredicate(nil)
     }
 }

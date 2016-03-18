@@ -116,16 +116,16 @@ class Model {
 
     // Return if the user database (UserEntity) is empty.
     func isEmptyUsers() -> Bool {
-        return CoreDataManager.instance.isEmpty("UserEntity")
+        return CoreDataManager.instance.isEmpty(UserEntity.entityName)
     }
 
     // Return if the albums database (AlbumEntity) is empty.
     func isEmptyAlbums() -> Bool {
-        return CoreDataManager.instance.isEmpty("AlbumEntity")
+        return CoreDataManager.instance.isEmpty(AlbumEntity.entityName)
     }
 
     // Return if the photos database (PhotoEntity) is empty.
     func isEmptyPhotos() -> Bool {
-        return CoreDataManager.instance.isEmpty("PhotoEntity")
+        return CoreDataManager.instance.isEmpty(PhotoEntity.entityName)
     }
 }
