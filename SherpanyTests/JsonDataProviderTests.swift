@@ -10,7 +10,8 @@ import XCTest
 @testable import Sherpany
 
 class ModelNetTests: XCTestCase {
-    let net = ModelNet(URLs: HttpJsonURLs())
+    private let _urls = HttpJsonURLs()
+    private let _dataProvider = JsonDataProvider()
 
     override func setUp() {
         super.setUp()
@@ -25,7 +26,7 @@ class ModelNetTests: XCTestCase {
     func testDowloadUsers() {
         let expectation = expectationWithDescription("Async Method")
 
-        net.downloadUsers({ (result: [UserData]?) -> Void in
+        _dataProvider.processUsers(_urls.kUsersURL, finished: { (result: [UserData]?) -> Void in
             if let users = result {
                 for user in users {
                     print("#\(user.userId)")
@@ -40,13 +41,13 @@ class ModelNetTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(net.status == ModelNet.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
     }
 
     func testDowloadAlbums() {
         let expectation = expectationWithDescription("Async Method")
 
-        net.downloadAlbums({ (result: [AlbumData]?) -> Void in
+        _dataProvider.processAlbums(_urls.kAlbumsURL, finished: { (result: [AlbumData]?) -> Void in
             if let albums = result {
                 for album in albums {
                     print("#\(album.albumId)")
@@ -60,13 +61,13 @@ class ModelNetTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(net.status == ModelNet.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
     }
 
     func testDowloadPhotos() {
         let expectation = expectationWithDescription("Async Method")
 
-        net.downloadPhotos({ (result: [PhotoData]?) -> Void in
+        _dataProvider.processPhotos(_urls.kPhotosURL, finished: { (result: [PhotoData]?) -> Void in
             if let photos = result {
                 for photo in photos {
                     print("#\(photo.photoId)")
@@ -80,14 +81,14 @@ class ModelNetTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(net.status == ModelNet.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
     }
 
     func testDownloadPicture() {
         let expectation = expectationWithDescription("Async Method")
         let url = NSURL(string: "http://placehold.it/150/6ba424")!
 
-        net.downloadPicture(url, finished: {(pictureData: NSData?) -> Void in
+        _dataProvider.processPicture(url, finished: {(pictureData: NSData?) -> Void in
             if let data = pictureData {
                 let image = UIImage(data: data)
                 assert(image != nil)
@@ -98,6 +99,6 @@ class ModelNetTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(net.status == ModelNet.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
     }
 }

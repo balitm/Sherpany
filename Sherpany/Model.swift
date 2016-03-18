@@ -8,32 +8,41 @@
 
 import Foundation
 
-// Protocol to delegate network start and stop events.
+// Protocol to delegate asynch data processing start and stop events.
 protocol ModelNetworkIndicatorDelegate: class {
     func show()
     func hide()
 }
 
-protocol ModelNetworkDownload {
-    func downloadUsers(finished: (users: [UserData]?) -> Void)
-    func downloadAlbums(finished: (albums: [AlbumData]?) -> Void)
-    func downloadPhotos(finished: (photos: [PhotoData]?) -> Void)
-    func downloadPicture(url: NSURL, finished: (pictureData: NSData?) -> Void)
+protocol DataURLs {
+    var kUsersURL: NSURL { get }
+    var kAlbumsURL: NSURL { get }
+    var kPhotosURL: NSURL { get }
+}
+
+protocol ModelDataProvider {
+    func processUsers(url: NSURL, finished: (users: [UserData]?) -> Void)
+    func processAlbums(url: NSURL, finished: (albums: [AlbumData]?) -> Void)
+    func processPhotos(url: NSURL, finished: (photos: [PhotoData]?) -> Void)
+    func processPicture(url: NSURL, finished: (pictureData: NSData?) -> Void)
 }
 
 // Model class.
 class Model {
-    let net: ModelNetworkDownload
+    // URLs to accessing data for services.
+    private let _urls: DataURLs
+    private let _dataProvider: ModelDataProvider
     weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil
 
-    init(downloader: ModelNetworkDownload) {
-        self.net = downloader
+    init(urls: DataURLs, dataProvider: ModelDataProvider) {
+        _urls = urls
+        _dataProvider = dataProvider
     }
 
     // Donload user (JSON) data and it to datatbase.
     func setupUsers(finished: () -> Void) {
         indicatorDelegate?.show()
-        net.downloadUsers { (result) -> Void in
+        _dataProvider.processUsers(_urls.kUsersURL, finished: { (result) -> Void in
             if let users = result {
                 let cdm = CoreDataManager.instance
                 for user in users {
@@ -45,13 +54,13 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished();
-        }
+        })
     }
 
     // Donload albums (JSON) data and it to datatbase.
     func setupAlbums(finished: () -> Void) {
         indicatorDelegate?.show()
-        net.downloadAlbums { (result) -> Void in
+        _dataProvider.processAlbums(_urls.kAlbumsURL, finished: { (result) -> Void in
             if let albums = result {
                 let cdm = CoreDataManager.instance
                 for album in albums {
@@ -63,13 +72,13 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished();
-        }
+        })
     }
 
     // Donload photos (JSON) data and it to datatbase.
     func setupPhotos(finished: () -> Void) {
         indicatorDelegate?.show()
-        net.downloadPhotos { (result) -> Void in
+        _dataProvider.processPhotos(_urls.kPhotosURL, finished: { (result) -> Void in
             if let photos = result {
                 let cdm = CoreDataManager.instance
                 for photo in photos {
@@ -81,7 +90,7 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished();
-        }
+        })
     }
 
     // Download a thumbnail photo picture from URL of a photo (JSON) data and
@@ -92,7 +101,7 @@ class Model {
             assert(false)
             return
         }
-        net.downloadPicture(url, finished: { (pictureData: NSData?) -> Void in
+        _dataProvider.processPicture(url, finished: { (pictureData: NSData?) -> Void in
             if let data = pictureData {
                 let cdm = CoreDataManager.instance
                 photo.thumbnail = data

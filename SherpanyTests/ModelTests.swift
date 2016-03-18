@@ -13,7 +13,7 @@ import UIKit
 
 
 class ModelTests: XCTestCase {
-    class FileJsonURLs: JsonURLs {
+    class FileJsonURLs: DataURLs {
         lazy var bundle: NSBundle = {
             return NSBundle(forClass: ModelTests.self)
         }()
@@ -43,7 +43,7 @@ class ModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         CoreDataManager.initialize(setUpInMemoryManagedObjectContext())
-        _model = Model(downloader: ModelNet(URLs: _urls))
+        _model = Model(urls: _urls, dataProvider: JsonDataProvider())
     }
     
     override func tearDown() {

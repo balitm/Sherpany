@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HttpJsonURLs: JsonURLs {
+struct HttpJsonURLs: DataURLs {
     var kUsersURL = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
     var kAlbumsURL = NSURL(string: "http://jsonplaceholder.typicode.com/albums")!
     var kPhotosURL = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!

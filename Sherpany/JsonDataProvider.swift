@@ -1,5 +1,5 @@
 //
-//  ModelNet.swift
+//  JsonDataProvider.swift
 //  Sherpany
 //
 //  Created by Balázs Kilvády on 3/4/16.
@@ -8,16 +8,7 @@
 
 import Foundation
 
-protocol JsonURLs {
-    var kUsersURL: NSURL { get }
-    var kAlbumsURL: NSURL { get }
-    var kPhotosURL: NSURL { get }
-}
-
-class ModelNet : ModelNetworkDownload {
-    // URLs to JSOn data web services.
-    private let _URLs: JsonURLs
-
+class JsonDataProvider : ModelDataProvider {
     // Errors to handle via throw/catch.
     enum Error: ErrorType {
         case URLFormat
@@ -34,20 +25,16 @@ class ModelNet : ModelNetworkDownload {
     var status = Status.kNetNoop
 
 
-    init(URLs: JsonURLs) {
-        _URLs = URLs
-    }
-
     // MARK: - Async download and process JSON data of users, albums and photos.
 
-    func downloadUsers(finished: (users: [UserData]?) -> Void) {
+    func processUsers(url: NSURL, finished: (users: [UserData]?) -> Void) {
         if status != Status.kNetFinished && status != Status.kNetNoop {
             return
         }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: self._URLs.kUsersURL) {
+            if let data = NSData(contentsOfURL: url) {
                 let users = self._processUsersJson(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     finished(users: users)
@@ -59,14 +46,14 @@ class ModelNet : ModelNetworkDownload {
         })
     }
 
-    func downloadAlbums(finished: (albums: [AlbumData]?) -> Void) {
+    func processAlbums(url: NSURL, finished: (albums: [AlbumData]?) -> Void) {
         if status != Status.kNetFinished && status != Status.kNetNoop {
             return
         }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: self._URLs.kAlbumsURL) {
+            if let data = NSData(contentsOfURL: url) {
                 let albums = self._processAlbumsJson(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     finished(albums: albums)
@@ -78,14 +65,14 @@ class ModelNet : ModelNetworkDownload {
         })
     }
 
-    func downloadPhotos(finished: (photos: [PhotoData]?) -> Void) {
+    func processPhotos(url: NSURL, finished: (photos: [PhotoData]?) -> Void) {
         if status != Status.kNetFinished && status != Status.kNetNoop {
             return
         }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: self._URLs.kPhotosURL) {
+            if let data = NSData(contentsOfURL: url) {
                 let photos = self._processPhotosJson(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     finished(photos: photos)
@@ -97,7 +84,7 @@ class ModelNet : ModelNetworkDownload {
         })
     }
 
-    func downloadPicture(url: NSURL, finished: (pictureData: NSData?) -> Void) {
+    func processPicture(url: NSURL, finished: (pictureData: NSData?) -> Void) {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
