@@ -1,5 +1,5 @@
 //
-//  ModelNetTest.swift
+//  JsonDataProviderTests.swift
 //  Sherpany
 //
 //  Created by Balázs Kilvády on 3/4/16.
@@ -9,7 +9,8 @@
 import XCTest
 @testable import Sherpany
 
-class ModelNetTests: XCTestCase {
+class JsonDataProviderTests: XCTestCase {
+
     private let _urls = HttpJsonURLs()
     private let _dataProvider = JsonDataProvider()
 
@@ -24,7 +25,7 @@ class ModelNetTests: XCTestCase {
     }
 
     func testDowloadUsers() {
-        let expectation = expectationWithDescription("Async Method")
+        let expectation = expectationWithDescription("Async Users Method")
 
         _dataProvider.processUsers(_urls.kUsersURL, finished: { (result: [UserData]?) -> Void in
             if let users = result {
@@ -45,7 +46,7 @@ class ModelNetTests: XCTestCase {
     }
 
     func testDowloadAlbums() {
-        let expectation = expectationWithDescription("Async Method")
+        let expectation = expectationWithDescription("Async Albums Method")
 
         _dataProvider.processAlbums(_urls.kAlbumsURL, finished: { (result: [AlbumData]?) -> Void in
             if let albums = result {
@@ -65,7 +66,7 @@ class ModelNetTests: XCTestCase {
     }
 
     func testDowloadPhotos() {
-        let expectation = expectationWithDescription("Async Method")
+        let expectation = expectationWithDescription("Async Photos Method")
 
         _dataProvider.processPhotos(_urls.kPhotosURL, finished: { (result: [PhotoData]?) -> Void in
             if let photos = result {

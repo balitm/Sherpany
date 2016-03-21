@@ -8,19 +8,33 @@
 
 import CoreData
 
-func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
-    let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles([NSBundle.mainBundle()])!
+class CoreDataHelper {
 
-    let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+    var storeCoordinator: NSPersistentStoreCoordinator!
+    var managedObjectContext: NSManagedObjectContext!
+    var managedObjectModel: NSManagedObjectModel!
+    var store: NSPersistentStore!
 
-    do {
-        try persistentStoreCoordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
-    } catch {
-        print("Adding in-memory persistent store coordinator failed.")
+    func setUpInMemoryManagedObjectContext() {
+        managedObjectModel = NSManagedObjectModel.mergedModelFromBundles([NSBundle.mainBundle()])!
+        storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+
+        store = try? storeCoordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
+
+        managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = storeCoordinator
     }
 
-    let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-    managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+    func releaseMemoryManagedObjectContext() -> Bool {
+        managedObjectContext = nil
+        var ret = true;
 
-    return managedObjectContext
+        do {
+            try storeCoordinator.removePersistentStore(store)
+        } catch {
+            print("couldn't remove persistant store: \(error)")
+            ret = false
+        }
+        return ret
+    }
 }

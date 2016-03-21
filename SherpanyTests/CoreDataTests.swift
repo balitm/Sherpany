@@ -20,15 +20,24 @@ private func ==(lhs: UserEntity, rhs: UserData) -> Bool {
 
 class CoreDataTests: XCTestCase {
 
+    let coreDataHelper = CoreDataHelper()
+
     override func setUp() {
         super.setUp()
-        CoreDataManager.initialize(setUpInMemoryManagedObjectContext())
+        coreDataHelper.setUpInMemoryManagedObjectContext()
+        XCTAssertNotEqual(coreDataHelper.managedObjectContext, nil)
+        CoreDataManager.initialize(coreDataHelper.managedObjectContext)
     }
     
     override func tearDown() {
+        XCTAssert(coreDataHelper.releaseMemoryManagedObjectContext())
         super.tearDown()
     }
 
+    func testStoreIsSetUp() {
+        XCTAssertNotNil(coreDataHelper.store, "no persitant store")
+    }
+    
     func testCoreData() {
         let user = UserData(userId: 1, name: "John Appleseed", email: "a@b.c", catchPhrase: "catch me")
         let cdm = CoreDataManager.instance
@@ -45,6 +54,6 @@ class CoreDataTests: XCTestCase {
         } catch {
             fatalError("Failed to fetch users: \(error)")
         }
-
     }
+
 }

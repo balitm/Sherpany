@@ -37,17 +37,20 @@ class ModelTests: XCTestCase {
         }()
     }
 
+    private let _coreDataHelper = CoreDataHelper()
     private let _urls = FileJsonURLs()
     private var _model: Model! = nil
 
     override func setUp() {
         super.setUp()
-        CoreDataManager.initialize(setUpInMemoryManagedObjectContext())
+        _coreDataHelper.setUpInMemoryManagedObjectContext()
+        XCTAssertNotEqual(_coreDataHelper.managedObjectContext, nil)
+        CoreDataManager.initialize(_coreDataHelper.managedObjectContext)
         _model = Model(urls: _urls, dataProvider: JsonDataProvider())
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        XCTAssert(_coreDataHelper.releaseMemoryManagedObjectContext())
         super.tearDown()
     }
 
