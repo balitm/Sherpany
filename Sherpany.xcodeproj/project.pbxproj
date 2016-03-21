@@ -13,6 +13,20 @@
 		29017C781C9AE7B700B0FABE /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C751C9AE7B700B0FABE /* albums.json */; };
 		29017C791C9AE7B700B0FABE /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C761C9AE7B700B0FABE /* photos.json */; };
 		29017C7A1C9AE7B700B0FABE /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C771C9AE7B700B0FABE /* users.json */; };
+		293DC0D91CA03D59006A68DA /* DataStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5EE1C89EA81005D53CD /* DataStructs.swift */; };
+		293DC0DA1CA03D59006A68DA /* JsonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5D01C89CC05005D53CD /* JsonDataProvider.swift */; };
+		293DC0DB1CA03D59006A68DA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
+		293DC0DC1CA03D6A006A68DA /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
+		293DC0DD1CA03D6A006A68DA /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
+		293DC0DE1CA03D6A006A68DA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
+		293DC0DF1CA03D6A006A68DA /* AlbumEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */; };
+		293DC0E01CA03D6A006A68DA /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
+		293DC0E11CA03D6A006A68DA /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
+		293DC0E21CA03D6A006A68DA /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
+		293DC0E31CA03D7D006A68DA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C6E1C9AC81A00B0FABE /* Config.swift */; };
+		293DC0E41CA03D7D006A68DA /* ListDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */; };
+		293DC0E51CA03D7D006A68DA /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */; };
+		293DC0E61CA04335006A68DA /* Sherpany.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 293F99FC1C88AB0B00C10A59 /* Sherpany.xcdatamodeld */; };
 		293F99F61C88AB0B00C10A59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F99F51C88AB0B00C10A59 /* AppDelegate.swift */; };
 		293F99FB1C88AB0B00C10A59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 293F99F91C88AB0B00C10A59 /* Main.storyboard */; };
 		293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 293F99FC1C88AB0B00C10A59 /* Sherpany.xcdatamodeld */; };
@@ -27,7 +41,6 @@
 		296DB5F71C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
 		296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
 		296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */; };
-		296EF2B91CA01EED00B2D9CE /* (null) in Sources */ = {isa = PBXBuildFile; };
 		296EF2BB1CA0370700B2D9CE /* ListDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296EF2BA1CA0370700B2D9CE /* ListDataSourceTests.swift */; };
 		297376191C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */; };
 		2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */; };
@@ -263,7 +276,6 @@
 					};
 					293F9A081C88AB0B00C10A59 = {
 						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = 293F99F11C88AB0B00C10A59;
 					};
 				};
 			};
@@ -301,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293DC0E61CA04335006A68DA /* Sherpany.xcdatamodeld in Resources */,
 				2989D56C1C9B2533002FA916 /* thumbnail.png in Resources */,
 				29017C7A1C9AE7B700B0FABE /* users.json in Resources */,
 				29017C791C9AE7B700B0FABE /* photos.json in Resources */,
@@ -342,9 +355,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293DC0E31CA03D7D006A68DA /* Config.swift in Sources */,
+				293DC0E41CA03D7D006A68DA /* ListDataSourceProtocol.swift in Sources */,
+				293DC0E51CA03D7D006A68DA /* ListDataSource.swift in Sources */,
+				293DC0DC1CA03D6A006A68DA /* PhotoEntity.swift in Sources */,
+				293DC0DD1CA03D6A006A68DA /* PhotoEntity+CoreDataProperties.swift in Sources */,
+				293DC0DE1CA03D6A006A68DA /* CoreDataManager.swift in Sources */,
+				293DC0DF1CA03D6A006A68DA /* AlbumEntity.swift in Sources */,
+				293DC0E01CA03D6A006A68DA /* AlbumEntity+CoreDataProperties.swift in Sources */,
+				293DC0E11CA03D6A006A68DA /* UserEntity.swift in Sources */,
+				293DC0E21CA03D6A006A68DA /* UserEntity+CoreDataProperties.swift in Sources */,
+				293DC0D91CA03D59006A68DA /* DataStructs.swift in Sources */,
+				293DC0DA1CA03D59006A68DA /* JsonDataProvider.swift in Sources */,
+				293DC0DB1CA03D59006A68DA /* Model.swift in Sources */,
 				2951635D1C99A43300B94281 /* ModelTests.swift in Sources */,
 				29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */,
-				296EF2B91CA01EED00B2D9CE /* (null) in Sources */,
 				296DB5CF1C89AFE0005D53CD /* JsonDataProviderTests.swift in Sources */,
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
 				29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */,
@@ -498,24 +523,20 @@
 		293F9A161C88AB0B00C10A59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SherpanyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hu.kil-dev.SherpanyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sherpany.app/Sherpany";
 			};
 			name = Debug;
 		};
 		293F9A171C88AB0B00C10A59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SherpanyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hu.kil-dev.SherpanyTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sherpany.app/Sherpany";
 			};
 			name = Release;
 		};

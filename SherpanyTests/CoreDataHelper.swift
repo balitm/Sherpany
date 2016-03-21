@@ -16,9 +16,11 @@ class CoreDataHelper {
     var store: NSPersistentStore!
 
     func setUpInMemoryManagedObjectContext() {
-        managedObjectModel = NSManagedObjectModel.mergedModelFromBundles([NSBundle.mainBundle()])!
-        storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        let bundle = NSBundle(forClass: CoreDataHelper.self)
+        let url = bundle.URLForResource("Sherpany", withExtension: "momd");
+        managedObjectModel = NSManagedObjectModel(contentsOfURL: url!)!
 
+        storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
         store = try? storeCoordinator.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: nil)
 
         managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
