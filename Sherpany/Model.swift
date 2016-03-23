@@ -21,10 +21,10 @@ protocol DataURLs {
 }
 
 protocol ModelDataProvider {
-    func processUsers(url: NSURL, finished: (users: [UserData]?) -> Void)
-    func processAlbums(url: NSURL, finished: (albums: [AlbumData]?) -> Void)
-    func processPhotos(url: NSURL, finished: (photos: [PhotoData]?) -> Void)
-    func processPicture(url: NSURL, finished: (pictureData: NSData?) -> Void)
+    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void)
+    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void)
+    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void)
+    func processPicture(url: NSURL, finished: (data: NSData?) -> Void)
 }
 
 // Model class.

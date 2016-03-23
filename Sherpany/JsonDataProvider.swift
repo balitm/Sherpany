@@ -27,17 +27,17 @@ class JsonDataProvider : ModelDataProvider {
 
     // MARK: - Async download and process JSON data of users, albums and photos.
 
-    func processUsers(url: NSURL, finished: (users: [UserData]?) -> Void) {
-        if status != Status.kNetFinished && status != Status.kNetNoop {
+    private func _processData<T>(url: NSURL, checkStatus: Bool = true, function: (data: NSData) -> T, finished: (data: T) -> Void) {
+        if checkStatus && status != Status.kNetFinished && status != Status.kNetNoop {
             return
         }
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         dispatch_async(dispatch_get_global_queue(priority, 0), {
             if let data = NSData(contentsOfURL: url) {
-                let users = self._processUsersJson(data)
+                let result = function(data: data)
                 dispatch_async(dispatch_get_main_queue()) {
-                    finished(users: users)
+                    finished(data: result)
                     self.status = Status.kNetFinished
                 }
             } else {
@@ -46,57 +46,20 @@ class JsonDataProvider : ModelDataProvider {
         })
     }
 
-    func processAlbums(url: NSURL, finished: (albums: [AlbumData]?) -> Void) {
-        if status != Status.kNetFinished && status != Status.kNetNoop {
-            return
-        }
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        status = Status.kNetExecuting
-        dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: url) {
-                let albums = self._processAlbumsJson(data)
-                dispatch_async(dispatch_get_main_queue()) {
-                    finished(albums: albums)
-                    self.status = Status.kNetFinished
-                }
-            } else {
-                self.status = Status.kNetNoHost
-            }
-        })
+    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void) {
+        _processData(url, function: self._processUsersJson, finished: finished)
     }
 
-    func processPhotos(url: NSURL, finished: (photos: [PhotoData]?) -> Void) {
-        if status != Status.kNetFinished && status != Status.kNetNoop {
-            return
-        }
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        status = Status.kNetExecuting
-        dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: url) {
-                let photos = self._processPhotosJson(data)
-                dispatch_async(dispatch_get_main_queue()) {
-                    finished(photos: photos)
-                    self.status = Status.kNetFinished
-                }
-            } else {
-                self.status = Status.kNetNoHost
-            }
-        })
+    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void) {
+        _processData(url, function: self._processAlbumsJson, finished: finished)
     }
 
-    func processPicture(url: NSURL, finished: (pictureData: NSData?) -> Void) {
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        status = Status.kNetExecuting
-        dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: url) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    finished(pictureData: data)
-                    self.status = Status.kNetFinished
-                }
-            } else {
-                self.status = Status.kNetNoHost
-            }
-        })
+    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void) {
+        _processData(url, function: self._processPhotosJson, finished: finished)
+    }
+
+    func processPicture(url: NSURL, finished: (data: NSData?) -> Void) {
+        _processData(url, checkStatus: false, function: self._processPictureData, finished: finished)
     }
 
 
@@ -180,5 +143,10 @@ class JsonDataProvider : ModelDataProvider {
             self.status = Status.kNetNoHost
         }
         return nil;
+    }
+
+    // Idle function for the template.
+    private func _processPictureData(data: NSData) -> NSData {
+        return data;
     }
 }
