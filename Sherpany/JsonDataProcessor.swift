@@ -1,71 +1,15 @@
 //
-//  JsonDataProvider.swift
+//  JsonDataProcessor.swift
 //  Sherpany
 //
-//  Created by Balázs Kilvády on 3/4/16.
+//  Created by Balázs Kilvády on 3/31/16.
 //  Copyright © 2016 kil-dev. All rights reserved.
 //
 
 import Foundation
 
-class JsonDataProvider : ModelDataProvider {
-    // Errors to handle via throw/catch.
-    enum Error: ErrorType {
-        case URLFormat
-    }
-
-    // Possible network statuses.
-    enum Status {
-        case kNetNoop
-        case kNetExecuting
-        case kNetFinished
-        case kNetNoHost
-    }
-
-    var status = Status.kNetNoop
-
-
-    // MARK: - Async download and process JSON data of users, albums and photos.
-
-    private func _processData<T>(url: NSURL, checkStatus: Bool = true, function: (data: NSData) -> T, finished: (data: T) -> Void) {
-        if checkStatus && status != Status.kNetFinished && status != Status.kNetNoop {
-            return
-        }
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        status = Status.kNetExecuting
-        dispatch_async(dispatch_get_global_queue(priority, 0), {
-            if let data = NSData(contentsOfURL: url) {
-                let result = function(data: data)
-                dispatch_async(dispatch_get_main_queue()) {
-                    finished(data: result)
-                    self.status = Status.kNetFinished
-                }
-            } else {
-                self.status = Status.kNetNoHost
-            }
-        })
-    }
-
-    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void) {
-        _processData(url, function: self._processUsersJson, finished: finished)
-    }
-
-    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void) {
-        _processData(url, function: self._processAlbumsJson, finished: finished)
-    }
-
-    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void) {
-        _processData(url, function: self._processPhotosJson, finished: finished)
-    }
-
-    func processPicture(url: NSURL, finished: (data: NSData?) -> Void) {
-        _processData(url, checkStatus: false, function: self._processPictureData, finished: finished)
-    }
-
-
-    // MARK: - private helpers to process JSON data of users, albums and photos.
-
-    private func _processUsersJson(data: NSData) -> [UserData]? {
+class JsonDataProcessor: DataProcessorProtocol {
+    func processUsers(data: NSData) -> [UserData]? {
         do {
             let users = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [[String: AnyObject]]
             var result = [UserData]()
@@ -89,12 +33,11 @@ class JsonDataProvider : ModelDataProvider {
             }
             return result
         } catch {
-            self.status = Status.kNetNoHost
         }
         return nil;
     }
 
-    private func _processAlbumsJson(data: NSData) -> [AlbumData]? {
+    func processAlbums(data: NSData) -> [AlbumData]? {
         do {
             let albums = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [[String: AnyObject]]
             var result = [AlbumData]()
@@ -113,12 +56,11 @@ class JsonDataProvider : ModelDataProvider {
             }
             return result
         } catch {
-            self.status = Status.kNetNoHost
         }
         return nil;
     }
 
-    private func _processPhotosJson(data: NSData) -> [PhotoData]? {
+    func processPhotos(data: NSData) -> [PhotoData]? {
         do {
             let photos = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [[String: AnyObject]]
             var result = [PhotoData]()
@@ -140,13 +82,12 @@ class JsonDataProvider : ModelDataProvider {
             }
             return result
         } catch {
-            self.status = Status.kNetNoHost
         }
         return nil;
     }
 
     // Idle function for the template.
-    private func _processPictureData(data: NSData) -> NSData {
+    func processPictureData(data: NSData) -> NSData {
         return data;
     }
 }

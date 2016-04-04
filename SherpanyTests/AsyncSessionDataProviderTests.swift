@@ -1,24 +1,25 @@
 //
-//  JsonDataProviderTests.swift
+//  AsyncSessionDataProviderTests.swift
 //  Sherpany
 //
-//  Created by Balázs Kilvády on 3/4/16.
+//  Created by Balázs Kilvády on 4/1/16.
 //  Copyright © 2016 kil-dev. All rights reserved.
 //
 
 import XCTest
-@testable import Sherpany
 
-class JsonDataProviderTests: XCTestCase {
-
+class AsyncSessionDataProviderTests: XCTestCase {
     private let _urls = HttpJsonURLs()
-    private let _dataProvider = JsonDataProvider()
+    private let _dataProvider = AsyncSessionDataProvider()
 
     override func setUp() {
+        if _dataProvider.dataProcessor == nil {
+            _dataProvider.dataProcessor = JsonDataProcessor()
+            (_dataProvider as AsyncSessionDataProvider).urls = _urls
+        }
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -42,7 +43,7 @@ class JsonDataProviderTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
     }
 
     func testDowloadAlbums() {
@@ -62,7 +63,7 @@ class JsonDataProviderTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
     }
 
     func testDowloadPhotos() {
@@ -82,7 +83,7 @@ class JsonDataProviderTests: XCTestCase {
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
     }
 
     func testDownloadPicture() {
@@ -97,9 +98,11 @@ class JsonDataProviderTests: XCTestCase {
                 XCTAssert(false)
             }
             expectation.fulfill()
+            }, progress: { (progress: Float) -> Void in
+                print("progress: \(progress)")
         })
 
         waitForExpectationsWithTimeout(5, handler: nil)
-        XCTAssert(_dataProvider.status == JsonDataProvider.Status.kNetFinished)
+        XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
     }
 }

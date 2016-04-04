@@ -20,26 +20,55 @@ protocol DataURLs {
     var kPhotosURL: NSURL { get }
 }
 
-protocol ModelDataProvider {
+protocol DataProviderProtocol {
+    var dataProcessor: DataProcessorProtocol! { get set }
+
     func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void)
     func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void)
     func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void)
-    func processPicture(url: NSURL, finished: (data: NSData?) -> Void)
+    func processPicture(url: NSURL, finished: (data: NSData?) -> Void, progress: (Float) -> Void)
+    func hasPendingTask() -> Bool
+}
+
+protocol DataProcessorProtocol: class {
+    func processUsers(data: NSData) -> [UserData]?
+    func processAlbums(data: NSData) -> [AlbumData]?
+    func processPhotos(data: NSData) -> [PhotoData]?
+    func processPictureData(data: NSData) -> NSData
 }
 
 // Model class.
 class Model {
     // URLs to accessing data for services.
     private let _urls: DataURLs
-    private let _dataProvider: ModelDataProvider
+    private let _dataProvider: DataProviderProtocol
     weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil
 
-    init(urls: DataURLs, dataProvider: ModelDataProvider) {
+
+    init(urls: DataURLs, dataProviderType: DataProviderBase.DataProviderType, dataProcessorType: DataProviderBase.DataProcessorType) {
         _urls = urls
-        _dataProvider = dataProvider
+        _dataProvider = DataProviderBase.dataProvider(dataProviderType, processorType: dataProcessorType, urls: urls)
     }
 
-    // Donload user (JSON) data and it to datatbase.
+    private func showIndicator() {
+        guard let delegate = indicatorDelegate else {
+            return
+        }
+        if !_dataProvider.hasPendingTask() {
+            delegate.show()
+        }
+    }
+
+    private func hideIndicator() {
+        guard let delegate = indicatorDelegate else {
+            return
+        }
+        if !_dataProvider.hasPendingTask() {
+            delegate.hide()
+        }
+    }
+
+    // Donload user (JSON) data and add it to datatbase.
     func setupUsers(finished: () -> Void) {
         indicatorDelegate?.show()
         _dataProvider.processUsers(_urls.kUsersURL, finished: { (result) -> Void in
@@ -57,7 +86,7 @@ class Model {
         })
     }
 
-    // Donload albums (JSON) data and it to datatbase.
+    // Donload albums (JSON) data and add it to datatbase.
     func setupAlbums(finished: () -> Void) {
         indicatorDelegate?.show()
         _dataProvider.processAlbums(_urls.kAlbumsURL, finished: { (result) -> Void in
@@ -75,7 +104,7 @@ class Model {
         })
     }
 
-    // Donload photos (JSON) data and it to datatbase.
+    // Donload photos (JSON) data and add it to datatbase.
     func setupPhotos(finished: () -> Void) {
         indicatorDelegate?.show()
         _dataProvider.processPhotos(_urls.kPhotosURL, finished: { (result) -> Void in
@@ -111,6 +140,8 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished()
+            }, progress: { (progress: Float) -> Void in
+                print("progress for picture: \(url) is \(progress)")
         })
     }
 
