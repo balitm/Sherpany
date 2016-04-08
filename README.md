@@ -4,6 +4,9 @@ Exercise app.
 
 An iPad application that downloads data in JSON format from a RESTful web service and makes it possible to navigate in the remote database. The app conforms with the requirements below, given the provided endpoints.
 
+UML diagram about the model part:
+![alt text](UML.png "UML model")
+
 Requirements:
 
 1. Display a table with all the users.
