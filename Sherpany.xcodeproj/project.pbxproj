@@ -74,7 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		29017C6E1C9AC81A00B0FABE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		29017C6E1C9AC81A00B0FABE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Sherpany/Config.swift; sourceTree = "<group>"; };
 		29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		29017C731C9AD51900B0FABE /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		29017C751C9AE7B700B0FABE /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
@@ -165,7 +165,6 @@
 				29F97C851C8AE3F1005A5276 /* Cell */,
 				296DB5CA1C89AD3C005D53CD /* Model */,
 				296DB5C91C89A875005D53CD /* CoreData */,
-				29017C6E1C9AC81A00B0FABE /* Config.swift */,
 				293F99F51C88AB0B00C10A59 /* AppDelegate.swift */,
 				29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */,
 				29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */,
@@ -218,6 +217,7 @@
 		296DB5CA1C89AD3C005D53CD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				29017C6E1C9AC81A00B0FABE /* Config.swift */,
 				296DB5EE1C89EA81005D53CD /* DataStructs.swift */,
 				296DB5D01C89CC05005D53CD /* AsyncDataProvider.swift */,
 				291A39521CB80AD000BFC34D /* AsyncSessionDataProvider.swift */,

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     // Model object of the application.
-    let _model = Model(urls: HttpJsonURLs(), dataProviderType: .AsyncSession, dataProcessorType: .Json)
+    let _model = Model(urls: Config(), types: Config())
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         CoreDataManager.initialize(self.managedObjectContext)

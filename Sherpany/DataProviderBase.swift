@@ -9,16 +9,6 @@
 import Foundation
 
 class DataProviderBase: NSObject {
-    enum DataProviderType {
-        case Async
-        case AsyncSession
-    }
-
-    enum DataProcessorType {
-        case Json
-        case Xml
-    }
-
     // Errors to handle via throw/catch.
     enum Error: ErrorType {
         case URLFormat

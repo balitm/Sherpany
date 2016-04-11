@@ -8,8 +8,10 @@
 
 import Foundation
 
-struct HttpJsonURLs: DataURLs {
-    var kUsersURL = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
-    var kAlbumsURL = NSURL(string: "http://jsonplaceholder.typicode.com/albums")!
-    var kPhotosURL = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!
+struct Config: DataURLs {
+    let kUsersURL = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
+    let kAlbumsURL = NSURL(string: "http://jsonplaceholder.typicode.com/albums")!
+    let kPhotosURL = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!
+    let kProviderType = DataProviderType.AsyncSession
+    let kProcessorType = DataProcessorType.Json
 }

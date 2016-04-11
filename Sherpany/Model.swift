@@ -8,6 +8,17 @@
 
 import Foundation
 
+
+enum DataProviderType {
+    case Async
+    case AsyncSession
+}
+
+enum DataProcessorType {
+    case Json
+    case Xml
+}
+
 // Protocol to delegate asynch data processing start and stop events.
 protocol ModelNetworkIndicatorDelegate: class {
     func show()
@@ -18,6 +29,11 @@ protocol DataURLs {
     var kUsersURL: NSURL { get }
     var kAlbumsURL: NSURL { get }
     var kPhotosURL: NSURL { get }
+}
+
+protocol ModelTypes {
+    var kProviderType: DataProviderType { get }
+    var kProcessorType: DataProcessorType { get }
 }
 
 protocol DataProviderProtocol {
@@ -45,9 +61,9 @@ class Model {
     weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil
 
 
-    init(urls: DataURLs, dataProviderType: DataProviderBase.DataProviderType, dataProcessorType: DataProviderBase.DataProcessorType) {
+    init(urls: DataURLs, types: ModelTypes) {
         _urls = urls
-        _dataProvider = DataProviderBase.dataProvider(dataProviderType, processorType: dataProcessorType, urls: urls)
+        _dataProvider = DataProviderBase.dataProvider(types.kProviderType, processorType: types.kProcessorType, urls: urls)
     }
 
     private func showIndicator() {
