@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Config: DataURLs {
+struct Config: DataURLs, ModelTypes {
     let kUsersURL = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
     let kAlbumsURL = NSURL(string: "http://jsonplaceholder.typicode.com/albums")!
     let kPhotosURL = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!

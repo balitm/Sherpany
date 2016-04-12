@@ -10,7 +10,7 @@ import XCTest
 @testable import Sherpany
 
 class AsyncDataProviderTests: XCTestCase {
-    private let _urls = HttpJsonURLs()
+    private let _config = Config()
     private let _dataProvider = AsyncDataProvider()
 
     override func setUp() {
@@ -27,7 +27,7 @@ class AsyncDataProviderTests: XCTestCase {
     func testDowloadUsers() {
         let expectation = expectationWithDescription("Async Users Method")
 
-        _dataProvider.processUsers(_urls.kUsersURL, finished: { (result: [UserData]?) -> Void in
+        _dataProvider.processUsers(_config.kUsersURL, finished: { (result: [UserData]?) -> Void in
             if let users = result {
                 for user in users {
                     print("#\(user.userId)")
@@ -48,7 +48,7 @@ class AsyncDataProviderTests: XCTestCase {
     func testDowloadAlbums() {
         let expectation = expectationWithDescription("Async Albums Method")
 
-        _dataProvider.processAlbums(_urls.kAlbumsURL, finished: { (result: [AlbumData]?) -> Void in
+        _dataProvider.processAlbums(_config.kAlbumsURL, finished: { (result: [AlbumData]?) -> Void in
             if let albums = result {
                 for album in albums {
                     print("#\(album.albumId)")
@@ -68,7 +68,7 @@ class AsyncDataProviderTests: XCTestCase {
     func testDowloadPhotos() {
         let expectation = expectationWithDescription("Async Photos Method")
 
-        _dataProvider.processPhotos(_urls.kPhotosURL, finished: { (result: [PhotoData]?) -> Void in
+        _dataProvider.processPhotos(_config.kPhotosURL, finished: { (result: [PhotoData]?) -> Void in
             if let photos = result {
                 for photo in photos {
                     print("#\(photo.photoId)")

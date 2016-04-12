@@ -37,8 +37,14 @@ class ModelTests: XCTestCase {
         }()
     }
 
+    struct TestModelTypes: ModelTypes {
+        var kProviderType = DataProviderType.AsyncSession
+        var kProcessorType = DataProcessorType.Json
+    }
+
     private let _coreDataHelper = CoreDataHelper()
     private let _urls = FileJsonURLs()
+    private var _types = TestModelTypes()
     private var _model: Model! = nil
 
     override func setUp() {
@@ -50,11 +56,13 @@ class ModelTests: XCTestCase {
     
     override func tearDown() {
         XCTAssert(_coreDataHelper.releaseMemoryManagedObjectContext())
+        _model = nil
         super.tearDown()
     }
 
     func testAsyncLoadUsers() {
-        _model = Model(urls: _urls, dataProviderType: .Async, dataProcessorType: .Json)
+        var types = _types; types.kProviderType = .Async
+        _model = Model(urls: _urls, types: types)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupUsers {
@@ -83,7 +91,8 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncLoadAlbums() {
-        _model = Model(urls: _urls, dataProviderType: .Async, dataProcessorType: .Json)
+        var types = _types; types.kProviderType = .Async
+        _model = Model(urls: _urls, types: types)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupAlbums {
@@ -111,7 +120,8 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncLoadPhotos() {
-        _model = Model(urls: _urls, dataProviderType: .Async, dataProcessorType: .Json)
+        var types = _types; types.kProviderType = .Async
+        _model = Model(urls: _urls, types: types)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupPhotos {
@@ -141,7 +151,8 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncLoadPicture() {
-        _model = Model(urls: _urls, dataProviderType: .Async, dataProcessorType: .Json)
+        var types = _types; types.kProviderType = .Async
+        _model = Model(urls: _urls, types: types)
         let expectation = expectationWithDescription("Async Method")
         let urlpath = _urls.bundle.pathForResource("thumbnail", ofType: "png")
         let url = NSURL.fileURLWithPath(urlpath!)
@@ -164,7 +175,7 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncSessionLoadUsers() {
-        _model = Model(urls: _urls, dataProviderType: .AsyncSession, dataProcessorType: .Json)
+        _model = Model(urls: _urls, types: _types)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupUsers {
@@ -193,7 +204,7 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncSessionLoadAlbums() {
-        _model = Model(urls: _urls, dataProviderType: .AsyncSession, dataProcessorType: .Json)
+        _model = Model(urls: _urls, types: _types)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupAlbums {
@@ -221,7 +232,7 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncSessionLoadPhotos() {
-        _model = Model(urls: _urls, dataProviderType: .AsyncSession, dataProcessorType: .Json)
+        _model = Model(urls: _urls, types: _types)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupPhotos {
@@ -251,7 +262,7 @@ class ModelTests: XCTestCase {
     }
 
     func testAsyncSessionLoadPicture() {
-        _model = Model(urls: _urls, dataProviderType: .AsyncSession, dataProcessorType: .Json)
+        _model = Model(urls: _urls, types: _types)
         let expectation = expectationWithDescription("Async Method")
         let urlpath = _urls.bundle.pathForResource("thumbnail", ofType: "png")
         let url = NSURL.fileURLWithPath(urlpath!)
