@@ -43,10 +43,7 @@ class UsersTableViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-
-        // Put the search bar into the navigation bar.
-        searchController.searchBar.sizeToFit()
-        navigationItem.titleView = searchController.searchBar
+        tableView.tableHeaderView = searchController.searchBar
 
         // Avoid hiding the navigation bar when presenting the search interface.
         searchController.hidesNavigationBarDuringPresentation = false
