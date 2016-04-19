@@ -54,6 +54,9 @@
 		29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */; };
 		29B7A0C11C9C2A1D00B16133 /* ListDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */; };
 		29B7A0C31C9C2BA200B16133 /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */; };
+		29BD37DE1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */; };
+		29BD37DF1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */; };
+		29BD37E31CC654220019763B /* SwiftyJsonDataProcessorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */; };
 		29F24BAE1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F24BAD1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift */; };
 		29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
@@ -61,6 +64,7 @@
 		29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
 		29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
 		29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
+		D1FD30AE9FDAFFBF212B6FF9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1822E15B4280EC620D4E704A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1822E15B4280EC620D4E704A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		254E610897912F71A3F6F953 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		29017C6E1C9AC81A00B0FABE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Sherpany/Config.swift; sourceTree = "<group>"; };
 		29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		29017C731C9AD51900B0FABE /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 		29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSourceProtocol.swift; sourceTree = "<group>"; };
 		29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJsonDataProcessor.swift; path = Sherpany/SwiftyJsonDataProcessor.swift; sourceTree = "<group>"; };
+		29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJsonDataProcessorTest.swift; sourceTree = "<group>"; };
 		29F24BAD1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncSessionDataProviderTests.swift; sourceTree = "<group>"; };
 		29F97C7C1C8ADA27005A5276 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Sherpany/Model.swift; sourceTree = "<group>"; };
 		29F97C821C8AE056005A5276 /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +127,7 @@
 		29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Sherpany/CoreDataManager.swift; sourceTree = "<group>"; };
 		29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoEntity.swift; path = Sherpany/PhotoEntity.swift; sourceTree = "<group>"; };
 		29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PhotoEntity+CoreDataProperties.swift"; path = "Sherpany/PhotoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1CCBDEF2EEB07EF26A3D067 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1FD30AE9FDAFFBF212B6FF9 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +155,8 @@
 				293F99F41C88AB0B00C10A59 /* Sherpany */,
 				293F9A0C1C88AB0B00C10A59 /* SherpanyTests */,
 				293F99F31C88AB0B00C10A59 /* Products */,
+				E4349A3624A8E5401E1E5791 /* Pods */,
+				4B836A82A69C830F48A9474E /* Frameworks */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -194,6 +206,7 @@
 				29017C731C9AD51900B0FABE /* CoreDataTests.swift */,
 				29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */,
 				296EF2BA1CA0370700B2D9CE /* ListDataSourceTests.swift */,
+				29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */,
 				293F9A0F1C88AB0B00C10A59 /* Info.plist */,
 			);
 			path = SherpanyTests;
@@ -224,6 +237,7 @@
 				29F97C7C1C8ADA27005A5276 /* Model.swift */,
 				29130E4F1CAD962100933982 /* DataProviderBase.swift */,
 				29130E521CAD9FB500933982 /* JsonDataProcessor.swift */,
+				29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -238,6 +252,23 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		4B836A82A69C830F48A9474E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1822E15B4280EC620D4E704A /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4349A3624A8E5401E1E5791 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				254E610897912F71A3F6F953 /* Pods.debug.xcconfig */,
+				B1CCBDEF2EEB07EF26A3D067 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,9 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 293F9A121C88AB0B00C10A59 /* Build configuration list for PBXNativeTarget "Sherpany" */;
 			buildPhases = (
+				6EB69D199B305FE00B8717F8 /* Check Pods Manifest.lock */,
 				293F99EE1C88AB0B00C10A59 /* Sources */,
 				293F99EF1C88AB0B00C10A59 /* Frameworks */,
 				293F99F01C88AB0B00C10A59 /* Resources */,
+				578B2EB37E040C6B2E286C81 /* Embed Pods Frameworks */,
+				74463717B2D4864D8ABDA07F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -338,6 +372,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		578B2EB37E040C6B2E286C81 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6EB69D199B305FE00B8717F8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		74463717B2D4864D8ABDA07F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		293F99EE1C88AB0B00C10A59 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -345,6 +427,7 @@
 			files = (
 				29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */,
 				29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */,
+				29BD37DE1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */,
 				29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */,
 				29130E501CAD962100933982 /* DataProviderBase.swift in Sources */,
 				296DB5F71C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift in Sources */,
@@ -375,6 +458,7 @@
 			files = (
 				293DC0E31CA03D7D006A68DA /* Config.swift in Sources */,
 				293DC0E41CA03D7D006A68DA /* ListDataSourceProtocol.swift in Sources */,
+				29BD37DF1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */,
 				29130E511CAD962100933982 /* DataProviderBase.swift in Sources */,
 				293DC0E51CA03D7D006A68DA /* ListDataSource.swift in Sources */,
 				293DC0DC1CA03D6A006A68DA /* PhotoEntity.swift in Sources */,
@@ -392,6 +476,7 @@
 				2951635D1C99A43300B94281 /* ModelTests.swift in Sources */,
 				29F24BAE1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift in Sources */,
 				29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */,
+				29BD37E31CC654220019763B /* SwiftyJsonDataProcessorTest.swift in Sources */,
 				296DB5CF1C89AFE0005D53CD /* AsyncDataProviderTests.swift in Sources */,
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
 				29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */,
@@ -518,6 +603,7 @@
 		};
 		293F9A131C88AB0B00C10A59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 254E610897912F71A3F6F953 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEFINES_MODULE = YES;
@@ -531,6 +617,7 @@
 		};
 		293F9A141C88AB0B00C10A59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1CCBDEF2EEB07EF26A3D067 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEFINES_MODULE = YES;
