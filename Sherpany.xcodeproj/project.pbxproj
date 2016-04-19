@@ -51,6 +51,11 @@
 		297376191C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */; };
 		2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */; };
 		2989D56C1C9B2533002FA916 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D56B1C9B2533002FA916 /* thumbnail.png */; };
+		29999D291CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */; };
+		29999D2A1CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */; };
+		29999D2C1CC684F500710F20 /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2B1CC684F500710F20 /* HttpRouter.swift */; };
+		29999D2D1CC684F500710F20 /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2B1CC684F500710F20 /* HttpRouter.swift */; };
+		29999D2F1CC69D7B00710F20 /* AlamofireDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2E1CC69D7B00710F20 /* AlamofireDataProviderTests.swift */; };
 		29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */; };
 		29B7A0C11C9C2A1D00B16133 /* ListDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */; };
 		29B7A0C31C9C2BA200B16133 /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */; };
@@ -115,6 +120,9 @@
 		297376181C8B041C001AE1AC /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
 		2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		2989D56B1C9B2533002FA916 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
+		29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireDataProvider.swift; path = Sherpany/AlamofireDataProvider.swift; sourceTree = "<group>"; };
+		29999D2B1CC684F500710F20 /* HttpRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpRouter.swift; path = Sherpany/HttpRouter.swift; sourceTree = "<group>"; };
+		29999D2E1CC69D7B00710F20 /* AlamofireDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireDataProviderTests.swift; sourceTree = "<group>"; };
 		29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSourceProtocol.swift; sourceTree = "<group>"; };
 		29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 				296EF2BA1CA0370700B2D9CE /* ListDataSourceTests.swift */,
 				29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */,
 				293F9A0F1C88AB0B00C10A59 /* Info.plist */,
+				29999D2E1CC69D7B00710F20 /* AlamofireDataProviderTests.swift */,
 			);
 			path = SherpanyTests;
 			sourceTree = "<group>";
@@ -232,12 +241,14 @@
 			children = (
 				29017C6E1C9AC81A00B0FABE /* Config.swift */,
 				296DB5EE1C89EA81005D53CD /* DataStructs.swift */,
+				29130E4F1CAD962100933982 /* DataProviderBase.swift */,
 				296DB5D01C89CC05005D53CD /* AsyncDataProvider.swift */,
 				291A39521CB80AD000BFC34D /* AsyncSessionDataProvider.swift */,
+				29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */,
 				29F97C7C1C8ADA27005A5276 /* Model.swift */,
-				29130E4F1CAD962100933982 /* DataProviderBase.swift */,
 				29130E521CAD9FB500933982 /* JsonDataProcessor.swift */,
 				29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */,
+				29999D2B1CC684F500710F20 /* HttpRouter.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -449,6 +460,8 @@
 				29017C6F1C9AC81A00B0FABE /* Config.swift in Sources */,
 				296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */,
 				2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */,
+				29999D2C1CC684F500710F20 /* HttpRouter.swift in Sources */,
+				29999D291CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +478,7 @@
 				293DC0DD1CA03D6A006A68DA /* PhotoEntity+CoreDataProperties.swift in Sources */,
 				293DC0DE1CA03D6A006A68DA /* CoreDataManager.swift in Sources */,
 				293DC0DF1CA03D6A006A68DA /* AlbumEntity.swift in Sources */,
+				29999D2A1CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */,
 				29130E541CAD9FB500933982 /* JsonDataProcessor.swift in Sources */,
 				293DC0E01CA03D6A006A68DA /* AlbumEntity+CoreDataProperties.swift in Sources */,
 				293DC0E11CA03D6A006A68DA /* UserEntity.swift in Sources */,
@@ -477,10 +491,12 @@
 				29F24BAE1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift in Sources */,
 				29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */,
 				29BD37E31CC654220019763B /* SwiftyJsonDataProcessorTest.swift in Sources */,
+				29999D2F1CC69D7B00710F20 /* AlamofireDataProviderTests.swift in Sources */,
 				296DB5CF1C89AFE0005D53CD /* AsyncDataProviderTests.swift in Sources */,
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
 				29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */,
 				296EF2BB1CA0370700B2D9CE /* ListDataSourceTests.swift in Sources */,
+				29999D2D1CC684F500710F20 /* HttpRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
