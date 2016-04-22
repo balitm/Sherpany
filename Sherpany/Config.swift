@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Config: DataURLs, ModelTypes {
-    let kBaseURL = NSURL(string: "http://jsonplaceholder.typicode.com")!
-    let kUsersURL = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
-    let kAlbumsURL = NSURL(string: "http://jsonplaceholder.typicode.com/albums")!
-    let kPhotosURL = NSURL(string: "http://jsonplaceholder.typicode.com/photos")!
-    let kProviderType = DataProviderType.AsyncSession
-    let kProcessorType = DataProcessorType.Json
+struct Config: ConfigProtocol {
+    let kBaseURL = "http://jsonplaceholder.typicode.com/"
+    let kUsersPath = "users"
+    let kAlbumsPath = "albums"
+    let kPhotosPath = "photos"
+    let kProviderType = DataProviderType.Alamofire
+    let kProcessorType = DataProcessorType.SwiftyJson
 }

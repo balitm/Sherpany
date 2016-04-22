@@ -8,12 +8,15 @@
 
 import Foundation
 import Alamofire
-import AlamofireImage
 
 
 class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
-    var urls: DataURLs! = nil
+//    var urls: DataURLs! = nil
     private let _queue = dispatch_queue_create("hu.kil-dev.manager-response-queue", DISPATCH_QUEUE_CONCURRENT)
+
+    func setup(urls: DataURLs) {
+        AlamofireRouter.setup(urls)
+    }
 
     private func _processData<T>(data: NSData, function: (data: NSData) -> T, finished: (data: T) -> Void) {
         let result = function(data: data)
@@ -23,8 +26,8 @@ class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
         }
     }
 
-    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void) {
-        Alamofire.request(HttpRouter.Users)
+    func processUsers(finished: (data: [UserData]?) -> Void) {
+        Alamofire.request(AlamofireRouter.Users)
             .responseData(queue: _queue, completionHandler: { response in
                 guard response.result.isSuccess else {
                     print("Error while getting user list: \(response.result.error)")
@@ -40,8 +43,8 @@ class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
             })
     }
 
-    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void) {
-        Alamofire.request(HttpRouter.Albums)
+    func processAlbums(finished: (data: [AlbumData]?) -> Void) {
+        Alamofire.request(AlamofireRouter.Albums)
             .responseData(queue: _queue, completionHandler: { response in
                 guard response.result.isSuccess else {
                     print("Error while getting album list: \(response.result.error)")
@@ -57,8 +60,8 @@ class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
             })
     }
 
-    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void) {
-        Alamofire.request(HttpRouter.Photos)
+    func processPhotos(finished: (data: [PhotoData]?) -> Void) {
+        Alamofire.request(AlamofireRouter.Photos)
             .responseData(queue: _queue, completionHandler: { response in
                 guard response.result.isSuccess else {
                     print("Error while getting photo list: \(response.result.error)")
@@ -75,6 +78,13 @@ class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
     }
 
     func processPicture(url: NSURL, finished: (data: NSData?) -> Void, progress: (Float) -> Void) {
+        Alamofire.request(.GET, url).responseData { response in
+            guard let data = response.result.value else {
+                finished(data: nil)
+                return
+            }
+            finished(data: data)
+        }
     }
 
     func hasPendingTask() -> Bool {

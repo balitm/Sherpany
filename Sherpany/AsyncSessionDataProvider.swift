@@ -33,7 +33,6 @@ class DownloadPicture: Download {
 
 
 class AsyncSessionDataProvider: DataProviderBase, DataProviderProtocol {
-    var urls: DataURLs! = nil
     private var _downloads = [String: Download]()
     private var _session: NSURLSession! = nil
 
@@ -45,32 +44,36 @@ class AsyncSessionDataProvider: DataProviderBase, DataProviderProtocol {
         _session = NSURLSession(configuration: config, delegate: self, delegateQueue: nil)
     }
 
-    private func _startProcessing<T, U where U: Download>(url: NSURL, finished: (data: T?) -> Void, download: U) {
-        let urlString = url.absoluteString
+    func setup(urls: DataURLs) {
+        URLRouter.setup(urls)
+    }
+
+    private func _startProcessing<T, U where U: Download>(request: NSURLRequest, finished: (data: T?) -> Void, download: U) {
+        let urlString = request.URL!.absoluteString
         assert(_downloads[urlString] == nil)
         _downloads[urlString] = download
-        let task = _session.downloadTaskWithRequest(NSURLRequest(URL: url))
+        let task = _session.downloadTaskWithRequest(request)
         task.resume()
     }
 
-    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void) {
+    func processUsers(finished: (data: [UserData]?) -> Void) {
         let download = DownloadData(closure: finished)
-        _startProcessing(url, finished: finished, download: download)
+        _startProcessing(URLRouter.Users.URLRequest, finished: finished, download: download)
     }
 
-    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void) {
+    func processAlbums(finished: (data: [AlbumData]?) -> Void) {
         let download = DownloadData(closure: finished)
-        _startProcessing(url, finished: finished, download: download)
+        _startProcessing(URLRouter.Albums.URLRequest, finished: finished, download: download)
     }
 
-    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void) {
+    func processPhotos(finished: (data: [PhotoData]?) -> Void) {
         let download = DownloadData(closure: finished)
-        _startProcessing(url, finished: finished, download: download)
+        _startProcessing(URLRouter.Photos.URLRequest, finished: finished, download: download)
     }
 
     func processPicture(url: NSURL, finished: (data: NSData?) -> Void, progress: (Float) -> Void) {
         let download = DownloadPicture(closure: finished, progressClosure: progress)
-        _startProcessing(url, finished: finished, download: download)
+        _startProcessing(NSURLRequest(URL: url), finished: finished, download: download)
     }
 
     func hasPendingTask() -> Bool {
@@ -102,18 +105,18 @@ extension AsyncSessionDataProvider: NSURLSessionDownloadDelegate {
             assert(false)
             return
         }
-        switch reqURL {
-        case urls.kUsersURL:
+        switch reqURL.absoluteURL {
+        case URLRouter.Users.url.absoluteURL:
             guard let d = download as? DownloadData<UserData> else {
                 break
             }
             _processData(location, function: dataProcessor.processUsers, finished: d._closure)
-        case urls.kAlbumsURL:
+        case URLRouter.Albums.url.absoluteURL:
             guard let d = download as? DownloadData<AlbumData> else {
                 break
             }
             _processData(location, function: dataProcessor.processAlbums, finished: d._closure)
-        case urls.kPhotosURL:
+        case URLRouter.Photos.url.absoluteURL:
             guard let d = download as? DownloadData<PhotoData> else {
                 break
             }

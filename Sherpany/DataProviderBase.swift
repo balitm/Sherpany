@@ -28,20 +28,25 @@ class DataProviderBase: NSObject {
 
 
     // Factory method.
-    class func dataProvider(providerType: DataProviderType, processorType: DataProcessorType, urls: DataURLs) -> DataProviderProtocol {
+    class func dataProvider(config: ConfigProtocol) -> DataProviderProtocol {
         var provider: DataProviderProtocol
 
-        switch providerType {
+        switch config.kProviderType {
         case .Async:
             provider = AsyncDataProvider()
         case .AsyncSession:
             provider = AsyncSessionDataProvider()
-            (provider as! AsyncSessionDataProvider).urls = urls
+            provider.setup(config)
+        case .Alamofire:
+            provider = AlamofireDataProvider()
+            provider.setup(config)
         }
 
-        switch processorType {
+        switch config.kProcessorType {
         case .Json:
             provider.dataProcessor = JsonDataProcessor()
+        case .SwiftyJson:
+            provider.dataProcessor = SwiftyJsonDataProcessor()
         default:
             assert(false)
             provider.dataProcessor = JsonDataProcessor()

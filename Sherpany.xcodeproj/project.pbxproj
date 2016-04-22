@@ -53,8 +53,8 @@
 		2989D56C1C9B2533002FA916 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2989D56B1C9B2533002FA916 /* thumbnail.png */; };
 		29999D291CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */; };
 		29999D2A1CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */; };
-		29999D2C1CC684F500710F20 /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2B1CC684F500710F20 /* HttpRouter.swift */; };
-		29999D2D1CC684F500710F20 /* HttpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2B1CC684F500710F20 /* HttpRouter.swift */; };
+		29999D2C1CC684F500710F20 /* AlamofireRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2B1CC684F500710F20 /* AlamofireRouter.swift */; };
+		29999D2D1CC684F500710F20 /* AlamofireRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2B1CC684F500710F20 /* AlamofireRouter.swift */; };
 		29999D2F1CC69D7B00710F20 /* AlamofireDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29999D2E1CC69D7B00710F20 /* AlamofireDataProviderTests.swift */; };
 		29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */; };
 		29B7A0C11C9C2A1D00B16133 /* ListDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */; };
@@ -63,6 +63,8 @@
 		29BD37DF1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */; };
 		29BD37E31CC654220019763B /* SwiftyJsonDataProcessorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */; };
 		29F24BAE1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F24BAD1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift */; };
+		29F526D01CC77D6F009BB457 /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F526CF1CC77D6F009BB457 /* URLRouter.swift */; };
+		29F526D11CC77D6F009BB457 /* URLRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F526CF1CC77D6F009BB457 /* URLRouter.swift */; };
 		29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
 		29F97C871C8AE441005A5276 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C861C8AE441005A5276 /* UsersTableViewCell.swift */; };
@@ -121,7 +123,7 @@
 		2973761B1C8B17F2001AE1AC /* PhotosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
 		2989D56B1C9B2533002FA916 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		29999D281CC67FDD00710F20 /* AlamofireDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireDataProvider.swift; path = Sherpany/AlamofireDataProvider.swift; sourceTree = "<group>"; };
-		29999D2B1CC684F500710F20 /* HttpRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpRouter.swift; path = Sherpany/HttpRouter.swift; sourceTree = "<group>"; };
+		29999D2B1CC684F500710F20 /* AlamofireRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireRouter.swift; path = Sherpany/AlamofireRouter.swift; sourceTree = "<group>"; };
 		29999D2E1CC69D7B00710F20 /* AlamofireDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireDataProviderTests.swift; sourceTree = "<group>"; };
 		29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSourceProtocol.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJsonDataProcessor.swift; path = Sherpany/SwiftyJsonDataProcessor.swift; sourceTree = "<group>"; };
 		29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJsonDataProcessorTest.swift; sourceTree = "<group>"; };
 		29F24BAD1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncSessionDataProviderTests.swift; sourceTree = "<group>"; };
+		29F526CF1CC77D6F009BB457 /* URLRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URLRouter.swift; path = Sherpany/URLRouter.swift; sourceTree = "<group>"; };
 		29F97C7C1C8ADA27005A5276 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Sherpany/Model.swift; sourceTree = "<group>"; };
 		29F97C821C8AE056005A5276 /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		29F97C861C8AE441005A5276 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
@@ -248,7 +251,8 @@
 				29F97C7C1C8ADA27005A5276 /* Model.swift */,
 				29130E521CAD9FB500933982 /* JsonDataProcessor.swift */,
 				29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */,
-				29999D2B1CC684F500710F20 /* HttpRouter.swift */,
+				29999D2B1CC684F500710F20 /* AlamofireRouter.swift */,
+				29F526CF1CC77D6F009BB457 /* URLRouter.swift */,
 			);
 			name = Model;
 			path = ..;
@@ -451,6 +455,7 @@
 				291A39531CB80AD000BFC34D /* AsyncSessionDataProvider.swift in Sources */,
 				29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */,
 				296DB5FB1C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift in Sources */,
+				29F526D01CC77D6F009BB457 /* URLRouter.swift in Sources */,
 				29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */,
 				29B7A0C31C9C2BA200B16133 /* ListDataSource.swift in Sources */,
 				29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
@@ -460,7 +465,7 @@
 				29017C6F1C9AC81A00B0FABE /* Config.swift in Sources */,
 				296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */,
 				2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */,
-				29999D2C1CC684F500710F20 /* HttpRouter.swift in Sources */,
+				29999D2C1CC684F500710F20 /* AlamofireRouter.swift in Sources */,
 				29999D291CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +476,7 @@
 			files = (
 				293DC0E31CA03D7D006A68DA /* Config.swift in Sources */,
 				293DC0E41CA03D7D006A68DA /* ListDataSourceProtocol.swift in Sources */,
+				29F526D11CC77D6F009BB457 /* URLRouter.swift in Sources */,
 				29BD37DF1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */,
 				29130E511CAD962100933982 /* DataProviderBase.swift in Sources */,
 				293DC0E51CA03D7D006A68DA /* ListDataSource.swift in Sources */,
@@ -496,7 +502,7 @@
 				293F9A0E1C88AB0B00C10A59 /* SherpanyTests.swift in Sources */,
 				29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */,
 				296EF2BB1CA0370700B2D9CE /* ListDataSourceTests.swift in Sources */,
-				29999D2D1CC684F500710F20 /* HttpRouter.swift in Sources */,
+				29999D2D1CC684F500710F20 /* AlamofireRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

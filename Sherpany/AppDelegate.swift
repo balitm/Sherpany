@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     override init() {
         let config = Config()
-        _model = Model(urls: config, types: config)
+        _model = Model(config: config)
         super.init()
     }
 

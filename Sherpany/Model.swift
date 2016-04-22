@@ -12,10 +12,12 @@ import Foundation
 enum DataProviderType {
     case Async
     case AsyncSession
+    case Alamofire
 }
 
 enum DataProcessorType {
     case Json
+    case SwiftyJson
     case Xml
 }
 
@@ -26,9 +28,10 @@ protocol ModelNetworkIndicatorDelegate: class {
 }
 
 protocol DataURLs {
-    var kUsersURL: NSURL { get }
-    var kAlbumsURL: NSURL { get }
-    var kPhotosURL: NSURL { get }
+    var kBaseURL: String { get }
+    var kUsersPath: String { get }
+    var kAlbumsPath: String { get }
+    var kPhotosPath: String { get }
 }
 
 protocol ModelTypes {
@@ -36,12 +39,15 @@ protocol ModelTypes {
     var kProcessorType: DataProcessorType { get }
 }
 
+protocol ConfigProtocol: DataURLs, ModelTypes { }
+
 protocol DataProviderProtocol {
     var dataProcessor: DataProcessorProtocol! { get set }
 
-    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void)
-    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void)
-    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void)
+    func setup(urls: DataURLs)
+    func processUsers(finished: (data: [UserData]?) -> Void)
+    func processAlbums(finished: (data: [AlbumData]?) -> Void)
+    func processPhotos(finished: (data: [PhotoData]?) -> Void)
     func processPicture(url: NSURL, finished: (data: NSData?) -> Void, progress: (Float) -> Void)
     func hasPendingTask() -> Bool
 }
@@ -56,14 +62,13 @@ protocol DataProcessorProtocol: class {
 // Model class.
 class Model {
     // URLs to accessing data for services.
-    private let _urls: DataURLs
     private let _dataProvider: DataProviderProtocol
     weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil
 
 
-    init(urls: DataURLs, types: ModelTypes) {
-        _urls = urls
-        _dataProvider = DataProviderBase.dataProvider(types.kProviderType, processorType: types.kProcessorType, urls: urls)
+    init(config: ConfigProtocol) {
+        _dataProvider = DataProviderBase.dataProvider(config)
+        _dataProvider.setup(config)
     }
 
     private func showIndicator() {
@@ -87,7 +92,7 @@ class Model {
     // Donload user (JSON) data and add it to datatbase.
     func setupUsers(finished: () -> Void) {
         indicatorDelegate?.show()
-        _dataProvider.processUsers(_urls.kUsersURL, finished: { (result) -> Void in
+        _dataProvider.processUsers { result in
             if let users = result {
                 let cdm = CoreDataManager.instance
                 for user in users {
@@ -99,13 +104,13 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished();
-        })
+        }
     }
 
     // Donload albums (JSON) data and add it to datatbase.
     func setupAlbums(finished: () -> Void) {
         indicatorDelegate?.show()
-        _dataProvider.processAlbums(_urls.kAlbumsURL, finished: { (result) -> Void in
+        _dataProvider.processAlbums { result in
             if let albums = result {
                 let cdm = CoreDataManager.instance
                 for album in albums {
@@ -117,13 +122,13 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished();
-        })
+        }
     }
 
     // Donload photos (JSON) data and add it to datatbase.
     func setupPhotos(finished: () -> Void) {
         indicatorDelegate?.show()
-        _dataProvider.processPhotos(_urls.kPhotosURL, finished: { (result) -> Void in
+        _dataProvider.processPhotos { result in
             if let photos = result {
                 let cdm = CoreDataManager.instance
                 for photo in photos {
@@ -135,7 +140,7 @@ class Model {
             }
             self.indicatorDelegate?.hide()
             finished();
-        })
+        }
     }
 
     // Download a thumbnail photo picture from URL of a photo (JSON) data and

@@ -12,6 +12,10 @@ class AsyncDataProvider: DataProviderBase, DataProviderProtocol {
     private var _pendingTasks = 0
 
 
+    func setup(urls: DataURLs) {
+        URLRouter.setup(urls)
+    }
+
     private func _processData<T>(url: NSURL, checkStatus: Bool = true, function: (data: NSData) -> T, finished: (data: T) -> Void) {
         if checkStatus && status != Status.kNetFinished && status != Status.kNetNoop {
             return
@@ -37,16 +41,16 @@ class AsyncDataProvider: DataProviderBase, DataProviderProtocol {
         })
     }
 
-    func processUsers(url: NSURL, finished: (data: [UserData]?) -> Void) {
-        _processData(url, function: self.dataProcessor.processUsers, finished: finished)
+    func processUsers(finished: (data: [UserData]?) -> Void) {
+        _processData(URLRouter.Users.url, function: self.dataProcessor.processUsers, finished: finished)
     }
 
-    func processAlbums(url: NSURL, finished: (data: [AlbumData]?) -> Void) {
-        _processData(url, function: self.dataProcessor.processAlbums, finished: finished)
+    func processAlbums(finished: (data: [AlbumData]?) -> Void) {
+        _processData(URLRouter.Albums.url, function: self.dataProcessor.processAlbums, finished: finished)
     }
 
-    func processPhotos(url: NSURL, finished: (data: [PhotoData]?) -> Void) {
-        _processData(url, function: self.dataProcessor.processPhotos, finished: finished)
+    func processPhotos(finished: (data: [PhotoData]?) -> Void) {
+        _processData(URLRouter.Photos.url, function: self.dataProcessor.processPhotos, finished: finished)
     }
 
     func processPicture(url: NSURL, finished: (data: NSData?) -> Void, progress: (Float) -> Void) {

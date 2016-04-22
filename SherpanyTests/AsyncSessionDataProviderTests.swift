@@ -15,7 +15,7 @@ class AsyncSessionDataProviderTests: XCTestCase {
     override func setUp() {
         if _dataProvider.dataProcessor == nil {
             _dataProvider.dataProcessor = JsonDataProcessor()
-            (_dataProvider as AsyncSessionDataProvider).urls = _config
+            _dataProvider.setup(_config)
         }
         super.setUp()
     }
@@ -28,7 +28,7 @@ class AsyncSessionDataProviderTests: XCTestCase {
     func testDowloadUsers() {
         let expectation = expectationWithDescription("Async Users Method")
 
-        _dataProvider.processUsers(_config.kUsersURL, finished: { (result: [UserData]?) -> Void in
+        _dataProvider.processUsers{ (result: [UserData]?) -> Void in
             if let users = result {
                 for user in users {
                     print("#\(user.userId)")
@@ -40,7 +40,7 @@ class AsyncSessionDataProviderTests: XCTestCase {
                 print("No users downloaded.")
             }
             expectation.fulfill()
-        })
+        }
 
         waitForExpectationsWithTimeout(5, handler: nil)
         XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
@@ -49,7 +49,7 @@ class AsyncSessionDataProviderTests: XCTestCase {
     func testDowloadAlbums() {
         let expectation = expectationWithDescription("Async Albums Method")
 
-        _dataProvider.processAlbums(_config.kAlbumsURL, finished: { (result: [AlbumData]?) -> Void in
+        _dataProvider.processAlbums { (result: [AlbumData]?) -> Void in
             if let albums = result {
                 for album in albums {
                     print("#\(album.albumId)")
@@ -60,7 +60,7 @@ class AsyncSessionDataProviderTests: XCTestCase {
                 print("No albums downloaded.")
             }
             expectation.fulfill()
-        })
+        }
 
         waitForExpectationsWithTimeout(5, handler: nil)
         XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
@@ -69,7 +69,7 @@ class AsyncSessionDataProviderTests: XCTestCase {
     func testDowloadPhotos() {
         let expectation = expectationWithDescription("Async Photos Method")
 
-        _dataProvider.processPhotos(_config.kPhotosURL, finished: { (result: [PhotoData]?) -> Void in
+        _dataProvider.processPhotos { (result: [PhotoData]?) -> Void in
             if let photos = result {
                 for photo in photos {
                     print("#\(photo.photoId)")
@@ -80,9 +80,9 @@ class AsyncSessionDataProviderTests: XCTestCase {
                 print("No photos downloaded.")
             }
             expectation.fulfill()
-        })
+        }
 
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectationsWithTimeout(15, handler: nil)
         XCTAssert(_dataProvider.status == AsyncDataProvider.Status.kNetFinished)
     }
 
