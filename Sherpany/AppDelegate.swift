@@ -117,10 +117,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: ModelNetworkIndicatorDelegate {
     func show() {
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     }
 
     func hide() {
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 }

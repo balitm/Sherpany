@@ -36,10 +36,8 @@ class DataProviderBase: NSObject {
             provider = AsyncDataProvider()
         case .AsyncSession:
             provider = AsyncSessionDataProvider()
-            provider.setup(config)
         case .Alamofire:
             provider = AlamofireDataProvider()
-            provider.setup(config)
         }
 
         switch config.kProcessorType {

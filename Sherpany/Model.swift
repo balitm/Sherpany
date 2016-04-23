@@ -42,6 +42,7 @@ protocol ModelTypes {
 protocol ConfigProtocol: DataURLs, ModelTypes { }
 
 protocol DataProviderProtocol {
+    var indicatorDelegate: ModelNetworkIndicatorDelegate! { get set }
     var dataProcessor: DataProcessorProtocol! { get set }
 
     func setup(urls: DataURLs)
@@ -62,8 +63,12 @@ protocol DataProcessorProtocol: class {
 // Model class.
 class Model {
     // URLs to accessing data for services.
-    private let _dataProvider: DataProviderProtocol
-    weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil
+    private var _dataProvider: DataProviderProtocol
+    weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil {
+        didSet {
+            _dataProvider.indicatorDelegate = indicatorDelegate
+        }
+    }
 
 
     init(config: ConfigProtocol) {
@@ -73,7 +78,7 @@ class Model {
 
     // Donload user (JSON) data and add it to datatbase.
     func setupUsers(finished: () -> Void) {
-        indicatorDelegate?.show()
+//        indicatorDelegate?.show()
         _dataProvider.processUsers { result in
             if let users = result {
                 let cdm = CoreDataManager.instance
@@ -84,14 +89,14 @@ class Model {
             } else {
                 assert(false, "No users downloaded.")
             }
-            self.indicatorDelegate?.hide()
+//            self.indicatorDelegate?.hide()
             finished();
         }
     }
 
     // Donload albums (JSON) data and add it to datatbase.
     func setupAlbums(finished: () -> Void) {
-        indicatorDelegate?.show()
+//        indicatorDelegate?.show()
         _dataProvider.processAlbums { result in
             if let albums = result {
                 let cdm = CoreDataManager.instance
@@ -102,14 +107,14 @@ class Model {
             } else {
                 assert(false, "No albums downloaded.")
             }
-            self.indicatorDelegate?.hide()
+//            self.indicatorDelegate?.hide()
             finished();
         }
     }
 
     // Donload photos (JSON) data and add it to datatbase.
     func setupPhotos(finished: () -> Void) {
-        indicatorDelegate?.show()
+//        indicatorDelegate?.show()
         _dataProvider.processPhotos { result in
             if let photos = result {
                 let cdm = CoreDataManager.instance
@@ -120,7 +125,7 @@ class Model {
             } else {
                 assert(false, "No photos downloaded.")
             }
-            self.indicatorDelegate?.hide()
+//            self.indicatorDelegate?.hide()
             finished();
         }
     }

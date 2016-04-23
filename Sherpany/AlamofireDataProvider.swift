@@ -12,6 +12,7 @@ import AlamofireNetworkActivityIndicator
 
 
 class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
+    var indicatorDelegate: ModelNetworkIndicatorDelegate! = nil
     private let _queue = dispatch_queue_create("hu.kil-dev.manager-response-queue", DISPATCH_QUEUE_CONCURRENT)
 
     func setup(urls: DataURLs) {

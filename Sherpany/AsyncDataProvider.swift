@@ -9,6 +9,7 @@
 import Foundation
 
 class AsyncDataProvider: DataProviderBase, DataProviderProtocol {
+    var indicatorDelegate: ModelNetworkIndicatorDelegate! = nil
     private var _pendingTasks = 0
 
 
@@ -23,6 +24,9 @@ class AsyncDataProvider: DataProviderBase, DataProviderProtocol {
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         status = Status.kNetExecuting
         assert(_pendingTasks >= 0)
+        if _pendingTasks == 0 {
+            indicatorDelegate?.show()
+        }
         _pendingTasks += 1
         print("> pending: \(_pendingTasks)")
         dispatch_async(dispatch_get_global_queue(priority, 0), {
@@ -34,6 +38,9 @@ class AsyncDataProvider: DataProviderBase, DataProviderProtocol {
                     self._pendingTasks -= 1
                     print("< pending: \(self._pendingTasks)")
                     assert(self._pendingTasks >= 0)
+                    if self._pendingTasks == 0 {
+                        self.indicatorDelegate?.hide()
+                    }
                 }
             } else {
                 self.status = Status.kNetNoHost

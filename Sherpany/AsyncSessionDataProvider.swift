@@ -33,6 +33,7 @@ class DownloadPicture: Download {
 
 
 class AsyncSessionDataProvider: DataProviderBase, DataProviderProtocol {
+    var indicatorDelegate: ModelNetworkIndicatorDelegate! = nil
     private var _downloads = [String: Download]()
     private var _session: NSURLSession! = nil
 
@@ -50,6 +51,9 @@ class AsyncSessionDataProvider: DataProviderBase, DataProviderProtocol {
 
     private func _startProcessing<T, U where U: Download>(request: NSURLRequest, finished: (data: T?) -> Void, download: U) {
         let urlString = request.URL!.absoluteString
+        if _downloads.isEmpty {
+            indicatorDelegate?.show()
+        }
         assert(_downloads[urlString] == nil)
         _downloads[urlString] = download
         let task = _session.downloadTaskWithRequest(request)
@@ -88,10 +92,14 @@ extension AsyncSessionDataProvider: NSURLSessionDelegate {
 }
 
 extension AsyncSessionDataProvider: NSURLSessionDownloadDelegate {
-    private func _processData<T>(url: NSURL, function: (data: NSData) -> T, finished: (data: T) -> Void) {
+    private func _processData<T>(url: NSURL, _ reqURL: NSURL, function: (data: NSData) -> T, finished: (data: T) -> Void) {
         let data = NSData(contentsOfURL: url)
         let result = function(data: data!)
         dispatch_async(dispatch_get_main_queue()) {
+            self._downloads[reqURL.absoluteString] = nil
+            if self._downloads.isEmpty {
+                self.indicatorDelegate?.hide()
+            }
             finished(data: result)
             self.status = Status.kNetFinished
         }
@@ -110,25 +118,24 @@ extension AsyncSessionDataProvider: NSURLSessionDownloadDelegate {
             guard let d = download as? DownloadData<UserData> else {
                 break
             }
-            _processData(location, function: dataProcessor.processUsers, finished: d._closure)
+            _processData(location, reqURL, function: dataProcessor.processUsers, finished: d._closure)
         case URLRouter.Albums.url.absoluteURL:
             guard let d = download as? DownloadData<AlbumData> else {
                 break
             }
-            _processData(location, function: dataProcessor.processAlbums, finished: d._closure)
+            _processData(location, reqURL, function: dataProcessor.processAlbums, finished: d._closure)
         case URLRouter.Photos.url.absoluteURL:
             guard let d = download as? DownloadData<PhotoData> else {
                 break
             }
-            _processData(location, function: dataProcessor.processPhotos, finished: d._closure)
+            _processData(location, reqURL, function: dataProcessor.processPhotos, finished: d._closure)
         default:
             guard let d = download as? DownloadPicture else {
                 break
             }
-            _processData(location, function: dataProcessor.processPictureData, finished: d._closure)
+            _processData(location, reqURL, function: dataProcessor.processPictureData, finished: d._closure)
         }
-        _downloads[reqURL.absoluteString] = nil
-    }
+   }
 
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
     }
