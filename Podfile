@@ -4,4 +4,5 @@ use_frameworks!
 
 pod 'Alamofire'
 pod 'AlamofireImage'
+pod 'AlamofireNetworkActivityIndicator'
 pod 'SwiftyJSON'

@@ -71,24 +71,6 @@ class Model {
         _dataProvider.setup(config)
     }
 
-    private func showIndicator() {
-        guard let delegate = indicatorDelegate else {
-            return
-        }
-        if !_dataProvider.hasPendingTask() {
-            delegate.show()
-        }
-    }
-
-    private func hideIndicator() {
-        guard let delegate = indicatorDelegate else {
-            return
-        }
-        if !_dataProvider.hasPendingTask() {
-            delegate.hide()
-        }
-    }
-
     // Donload user (JSON) data and add it to datatbase.
     func setupUsers(finished: () -> Void) {
         indicatorDelegate?.show()
@@ -146,7 +128,6 @@ class Model {
     // Download a thumbnail photo picture from URL of a photo (JSON) data and
     // add it to the database.
     func addPicture(photo: PhotoEntity, finished: () -> Void) {
-        indicatorDelegate?.show()
         guard let url = NSURL(string: photo.thumbnailUrl!) else {
             assert(false)
             return
@@ -159,7 +140,6 @@ class Model {
             } else {
                 assert(false, "No thubnail downloaded.")
             }
-            self.indicatorDelegate?.hide()
             finished()
             }, progress: { (progress: Float) -> Void in
                 print("progress for picture: \(url) is \(progress)")

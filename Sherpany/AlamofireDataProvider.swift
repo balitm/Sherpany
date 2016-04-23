@@ -8,14 +8,16 @@
 
 import Foundation
 import Alamofire
+import AlamofireNetworkActivityIndicator
 
 
 class AlamofireDataProvider: DataProviderBase, DataProviderProtocol {
-//    var urls: DataURLs! = nil
     private let _queue = dispatch_queue_create("hu.kil-dev.manager-response-queue", DISPATCH_QUEUE_CONCURRENT)
 
     func setup(urls: DataURLs) {
         AlamofireRouter.setup(urls)
+        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+        NetworkActivityIndicatorManager.sharedManager.startDelay = 0.0
     }
 
     private func _processData<T>(data: NSData, function: (data: NSData) -> T, finished: (data: T) -> Void) {

@@ -13,6 +13,6 @@ struct Config: ConfigProtocol {
     let kUsersPath = "users"
     let kAlbumsPath = "albums"
     let kPhotosPath = "photos"
-    let kProviderType = DataProviderType.Alamofire
+    let kProviderType = DataProviderType.Alamofire //AsyncSession
     let kProcessorType = DataProcessorType.SwiftyJson
 }
