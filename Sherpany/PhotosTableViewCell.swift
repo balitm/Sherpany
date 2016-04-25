@@ -11,4 +11,5 @@ import UIKit
 class PhotosTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
 }

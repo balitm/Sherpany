@@ -68,6 +68,7 @@ extension PhotosTableViewController: ListDataSourceDelegate {
             } else {
                 // Set up the image from the database.
                 photoCell.thumbnail.image = UIImage(data: photo.thumbnail!)
+                photoCell.indicator.stopAnimating()
             }
         }
     }
