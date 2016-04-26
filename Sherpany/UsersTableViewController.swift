@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import CoreData
+import DATAStack
 
 
-class UsersTableViewController: UITableViewController {
-    weak var model: Model! = nil
+class UsersTableViewController: BaseTableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     private let _listDataSource: SearchableListDataSourceProtocol
 
@@ -25,7 +24,7 @@ class UsersTableViewController: UITableViewController {
         super.viewDidLoad()
 
         // Setup the data source object.
-        _listDataSource.managedObjectContext = CoreDataManager.instance.managedContext
+        _listDataSource.managedObjectContext = dataStack.mainContext
         _listDataSource.tableView = tableView
         tableView.dataSource = _listDataSource
 
@@ -64,6 +63,7 @@ class UsersTableViewController: UITableViewController {
             let user = _listDataSource.objectAtIndexPath(indexPath) as! UserEntity
             let controller = segue.destinationViewController as! AlbumsTableViewController
             controller.model = model
+            controller.dataStack = dataStack
             controller.userId = user.userId
             controller.navigationItem.title = user.name
         }

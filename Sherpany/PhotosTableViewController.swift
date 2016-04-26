@@ -10,8 +10,7 @@ import UIKit
 import CoreData
 
 
-class PhotosTableViewController: UITableViewController {
-    weak var model: Model! = nil
+class PhotosTableViewController: BaseTableViewController {
     private let _listDataSource: ListDataSourceProtocol
     var albumId: Int16 = -1
 
@@ -25,7 +24,7 @@ class PhotosTableViewController: UITableViewController {
         super.viewDidLoad()
 
         // Setup the data source object.
-        _listDataSource.managedObjectContext = CoreDataManager.instance.managedContext
+        _listDataSource.managedObjectContext = dataStack.mainContext
         _listDataSource.tableView = tableView
         tableView.dataSource = _listDataSource
 

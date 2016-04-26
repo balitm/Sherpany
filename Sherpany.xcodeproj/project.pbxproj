@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		29017C6F1C9AC81A00B0FABE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C6E1C9AC81A00B0FABE /* Config.swift */; };
-		29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */; };
 		29017C741C9AD51900B0FABE /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29017C731C9AD51900B0FABE /* CoreDataTests.swift */; };
 		29017C781C9AE7B700B0FABE /* albums.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C751C9AE7B700B0FABE /* albums.json */; };
 		29017C791C9AE7B700B0FABE /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 29017C761C9AE7B700B0FABE /* photos.json */; };
@@ -24,7 +23,6 @@
 		293DC0DB1CA03D59006A68DA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		293DC0DC1CA03D6A006A68DA /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
 		293DC0DD1CA03D6A006A68DA /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
-		293DC0DE1CA03D6A006A68DA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
 		293DC0DF1CA03D6A006A68DA /* AlbumEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */; };
 		293DC0E01CA03D6A006A68DA /* AlbumEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */; };
 		293DC0E11CA03D6A006A68DA /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DB5F31C89EA9C005D53CD /* UserEntity.swift */; };
@@ -59,6 +57,10 @@
 		29AA57161C8B5A8C00891F09 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */; };
 		29B7A0C11C9C2A1D00B16133 /* ListDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */; };
 		29B7A0C31C9C2BA200B16133 /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */; };
+		29BD0CB41CCF7D8900C54E5A /* DATAStack+sherpany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD0CB31CCF7D8900C54E5A /* DATAStack+sherpany.swift */; };
+		29BD0CB51CCF7D8900C54E5A /* DATAStack+sherpany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD0CB31CCF7D8900C54E5A /* DATAStack+sherpany.swift */; };
+		29BD0CB71CCF839900C54E5A /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD0CB61CCF839900C54E5A /* BaseTableViewController.swift */; };
+		29BD0CB81CCF839900C54E5A /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD0CB61CCF839900C54E5A /* BaseTableViewController.swift */; };
 		29BD37DE1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */; };
 		29BD37DF1CC646380019763B /* SwiftyJsonDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */; };
 		29BD37E31CC654220019763B /* SwiftyJsonDataProcessorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */; };
@@ -68,7 +70,6 @@
 		29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C7C1C8ADA27005A5276 /* Model.swift */; };
 		29F97C831C8AE056005A5276 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C821C8AE056005A5276 /* UsersTableViewController.swift */; };
 		29F97C871C8AE441005A5276 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F97C861C8AE441005A5276 /* UsersTableViewCell.swift */; };
-		29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */; };
 		29FF77B11C8A0F9500A9C469 /* PhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */; };
 		29FF77B31C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */; };
 		D1FD30AE9FDAFFBF212B6FF9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1822E15B4280EC620D4E704A /* Pods.framework */; };
@@ -88,7 +89,6 @@
 		1822E15B4280EC620D4E704A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		254E610897912F71A3F6F953 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		29017C6E1C9AC81A00B0FABE /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Sherpany/Config.swift; sourceTree = "<group>"; };
-		29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		29017C731C9AD51900B0FABE /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		29017C751C9AE7B700B0FABE /* albums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = albums.json; sourceTree = "<group>"; };
 		29017C761C9AE7B700B0FABE /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos.json; sourceTree = "<group>"; };
@@ -128,6 +128,8 @@
 		29AA57151C8B5A8C00891F09 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		29B7A0C01C9C2A1D00B16133 /* ListDataSourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSourceProtocol.swift; sourceTree = "<group>"; };
 		29B7A0C21C9C2BA200B16133 /* ListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		29BD0CB31CCF7D8900C54E5A /* DATAStack+sherpany.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DATAStack+sherpany.swift"; path = "Sherpany/DATAStack+sherpany.swift"; sourceTree = "<group>"; };
+		29BD0CB61CCF839900C54E5A /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		29BD37DD1CC646380019763B /* SwiftyJsonDataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJsonDataProcessor.swift; path = Sherpany/SwiftyJsonDataProcessor.swift; sourceTree = "<group>"; };
 		29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJsonDataProcessorTest.swift; sourceTree = "<group>"; };
 		29F24BAD1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncSessionDataProviderTests.swift; sourceTree = "<group>"; };
@@ -135,7 +137,6 @@
 		29F97C7C1C8ADA27005A5276 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Sherpany/Model.swift; sourceTree = "<group>"; };
 		29F97C821C8AE056005A5276 /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		29F97C861C8AE441005A5276 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
-		29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Sherpany/CoreDataManager.swift; sourceTree = "<group>"; };
 		29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoEntity.swift; path = Sherpany/PhotoEntity.swift; sourceTree = "<group>"; };
 		29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PhotoEntity+CoreDataProperties.swift"; path = "Sherpany/PhotoEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1CCBDEF2EEB07EF26A3D067 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 				293F9A011C88AB0B00C10A59 /* LaunchScreen.storyboard */,
 				293F9A041C88AB0B00C10A59 /* Info.plist */,
 				293F99FC1C88AB0B00C10A59 /* Sherpany.xcdatamodeld */,
+				29BD0CB61CCF839900C54E5A /* BaseTableViewController.swift */,
 			);
 			path = Sherpany;
 			sourceTree = "<group>";
@@ -215,7 +217,6 @@
 				296DB5CE1C89AFE0005D53CD /* AsyncDataProviderTests.swift */,
 				29F24BAD1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift */,
 				29017C731C9AD51900B0FABE /* CoreDataTests.swift */,
-				29017C711C9AD3E600B0FABE /* CoreDataHelper.swift */,
 				296EF2BA1CA0370700B2D9CE /* ListDataSourceTests.swift */,
 				29BD37E21CC654220019763B /* SwiftyJsonDataProcessorTest.swift */,
 				293F9A0F1C88AB0B00C10A59 /* Info.plist */,
@@ -229,11 +230,11 @@
 			children = (
 				29FF77AF1C8A0F9500A9C469 /* PhotoEntity.swift */,
 				29FF77B01C8A0F9500A9C469 /* PhotoEntity+CoreDataProperties.swift */,
-				29FF77AC1C8A0F6100A9C469 /* CoreDataManager.swift */,
 				296DB5F11C89EA9C005D53CD /* AlbumEntity.swift */,
 				296DB5F21C89EA9C005D53CD /* AlbumEntity+CoreDataProperties.swift */,
 				296DB5F31C89EA9C005D53CD /* UserEntity.swift */,
 				296DB5F41C89EA9C005D53CD /* UserEntity+CoreDataProperties.swift */,
+				29BD0CB31CCF7D8900C54E5A /* DATAStack+sherpany.swift */,
 			);
 			name = CoreData;
 			path = ..;
@@ -450,6 +451,7 @@
 				29130E531CAD9FB500933982 /* JsonDataProcessor.swift in Sources */,
 				296DB5D11C89CC05005D53CD /* AsyncDataProvider.swift in Sources */,
 				297376191C8B041C001AE1AC /* AlbumsTableViewController.swift in Sources */,
+				29BD0CB71CCF839900C54E5A /* BaseTableViewController.swift in Sources */,
 				29B7A0C11C9C2A1D00B16133 /* ListDataSourceProtocol.swift in Sources */,
 				296DB5EF1C89EA81005D53CD /* DataStructs.swift in Sources */,
 				291A39531CB80AD000BFC34D /* AsyncSessionDataProvider.swift in Sources */,
@@ -458,12 +460,12 @@
 				29F526D01CC77D6F009BB457 /* URLRouter.swift in Sources */,
 				29F97C7D1C8ADA27005A5276 /* Model.swift in Sources */,
 				29B7A0C31C9C2BA200B16133 /* ListDataSource.swift in Sources */,
-				29FF77AD1C8A0F6100A9C469 /* CoreDataManager.swift in Sources */,
 				293F99F61C88AB0B00C10A59 /* AppDelegate.swift in Sources */,
 				296DB5F51C89EA9C005D53CD /* AlbumEntity.swift in Sources */,
 				293F99FE1C88AB0B00C10A59 /* Sherpany.xcdatamodeld in Sources */,
 				29017C6F1C9AC81A00B0FABE /* Config.swift in Sources */,
 				296DB5F91C89EA9C005D53CD /* UserEntity.swift in Sources */,
+				29BD0CB41CCF7D8900C54E5A /* DATAStack+sherpany.swift in Sources */,
 				2973761C1C8B17F2001AE1AC /* PhotosTableViewController.swift in Sources */,
 				29999D2C1CC684F500710F20 /* AlamofireRouter.swift in Sources */,
 				29999D291CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */,
@@ -482,20 +484,20 @@
 				293DC0E51CA03D7D006A68DA /* ListDataSource.swift in Sources */,
 				293DC0DC1CA03D6A006A68DA /* PhotoEntity.swift in Sources */,
 				293DC0DD1CA03D6A006A68DA /* PhotoEntity+CoreDataProperties.swift in Sources */,
-				293DC0DE1CA03D6A006A68DA /* CoreDataManager.swift in Sources */,
 				293DC0DF1CA03D6A006A68DA /* AlbumEntity.swift in Sources */,
 				29999D2A1CC67FDD00710F20 /* AlamofireDataProvider.swift in Sources */,
 				29130E541CAD9FB500933982 /* JsonDataProcessor.swift in Sources */,
 				293DC0E01CA03D6A006A68DA /* AlbumEntity+CoreDataProperties.swift in Sources */,
+				29BD0CB81CCF839900C54E5A /* BaseTableViewController.swift in Sources */,
 				293DC0E11CA03D6A006A68DA /* UserEntity.swift in Sources */,
 				293DC0E21CA03D6A006A68DA /* UserEntity+CoreDataProperties.swift in Sources */,
 				293DC0D91CA03D59006A68DA /* DataStructs.swift in Sources */,
 				293DC0DA1CA03D59006A68DA /* AsyncDataProvider.swift in Sources */,
 				291A39541CB80BC800BFC34D /* AsyncSessionDataProvider.swift in Sources */,
+				29BD0CB51CCF7D8900C54E5A /* DATAStack+sherpany.swift in Sources */,
 				293DC0DB1CA03D59006A68DA /* Model.swift in Sources */,
 				2951635D1C99A43300B94281 /* ModelTests.swift in Sources */,
 				29F24BAE1CAEC34300A475EB /* AsyncSessionDataProviderTests.swift in Sources */,
-				29017C721C9AD3E600B0FABE /* CoreDataHelper.swift in Sources */,
 				29BD37E31CC654220019763B /* SwiftyJsonDataProcessorTest.swift in Sources */,
 				29999D2F1CC69D7B00710F20 /* AlamofireDataProviderTests.swift in Sources */,
 				296DB5CF1C89AFE0005D53CD /* AsyncDataProviderTests.swift in Sources */,

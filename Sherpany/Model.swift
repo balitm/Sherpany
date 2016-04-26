@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DATAStack
 
 
 enum DataProviderType {
@@ -64,6 +65,7 @@ protocol DataProcessorProtocol: class {
 class Model {
     // URLs to accessing data for services.
     private var _dataProvider: DataProviderProtocol
+    private let _dataStack: DATAStack
     weak var indicatorDelegate: ModelNetworkIndicatorDelegate? = nil {
         didSet {
             _dataProvider.indicatorDelegate = indicatorDelegate
@@ -71,9 +73,10 @@ class Model {
     }
 
 
-    init(config: ConfigProtocol) {
+    init(config: ConfigProtocol, dataStack: DATAStack) {
         _dataProvider = DataProviderBase.dataProvider(config)
         _dataProvider.setup(config)
+        _dataStack = dataStack
     }
 
     // Donload user (JSON) data and add it to datatbase.
@@ -81,11 +84,10 @@ class Model {
 //        indicatorDelegate?.show()
         _dataProvider.processUsers { result in
             if let users = result {
-                let cdm = CoreDataManager.instance
                 for user in users {
-                    cdm.createUserEntity(user)
+                    self._dataStack.createUserEntity(user)
                 }
-                cdm.saveContext()
+                self._dataStack.persistWithCompletion(nil)
             } else {
                 assert(false, "No users downloaded.")
             }
@@ -99,11 +101,10 @@ class Model {
 //        indicatorDelegate?.show()
         _dataProvider.processAlbums { result in
             if let albums = result {
-                let cdm = CoreDataManager.instance
                 for album in albums {
-                    cdm.createAlbumEntity(album)
+                    self._dataStack.createAlbumEntity(album)
                 }
-                cdm.saveContext()
+                self._dataStack.persistWithCompletion(nil)
             } else {
                 assert(false, "No albums downloaded.")
             }
@@ -117,11 +118,10 @@ class Model {
 //        indicatorDelegate?.show()
         _dataProvider.processPhotos { result in
             if let photos = result {
-                let cdm = CoreDataManager.instance
                 for photo in photos {
-                    cdm.createPhotoEntity(photo)
+                    self._dataStack.createPhotoEntity(photo)
                 }
-                cdm.saveContext()
+                self._dataStack.persistWithCompletion(nil)
             } else {
                 assert(false, "No photos downloaded.")
             }
@@ -139,9 +139,8 @@ class Model {
         }
         _dataProvider.processPicture(url, finished: { (pictureData: NSData?) -> Void in
             if let data = pictureData {
-                let cdm = CoreDataManager.instance
                 photo.thumbnail = data
-                cdm.saveContext()
+                self._dataStack.persistWithCompletion(nil)
             } else {
                 assert(false, "No thubnail downloaded.")
             }
@@ -153,16 +152,16 @@ class Model {
 
     // Return if the user database (UserEntity) is empty.
     func isEmptyUsers() -> Bool {
-        return CoreDataManager.instance.isEmpty(UserEntity.entityName)
+        return _dataStack.isEmpty(UserEntity.entityName)
     }
 
     // Return if the albums database (AlbumEntity) is empty.
     func isEmptyAlbums() -> Bool {
-        return CoreDataManager.instance.isEmpty(AlbumEntity.entityName)
+        return _dataStack.isEmpty(AlbumEntity.entityName)
     }
 
     // Return if the photos database (PhotoEntity) is empty.
     func isEmptyPhotos() -> Bool {
-        return CoreDataManager.instance.isEmpty(PhotoEntity.entityName)
+        return _dataStack.isEmpty(PhotoEntity.entityName)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import CoreData
+import DATAStack
 import UIKit
 @testable import Sherpany
 
@@ -40,20 +40,20 @@ class ModelTests: XCTestCase {
         return NSBundle(forClass: ModelTests.self)
     }()
 
-    private let _coreDataHelper = CoreDataHelper()
+    private var _dataStack: DATAStack! = nil
     private let _config = TestConfig(source: Config())
     private var _model: Model! = nil
 
     override func setUp() {
         super.setUp()
-        _coreDataHelper.setUpInMemoryManagedObjectContext()
-        XCTAssertNotEqual(_coreDataHelper.managedObjectContext, nil)
-        CoreDataManager.initialize(_coreDataHelper.managedObjectContext)
+        _dataStack = DATAStack(modelName: "Sherpany", bundle: NSBundle(forClass: ModelTests.self), storeType: .InMemory)
+        XCTAssertNotNil(_dataStack)
     }
     
     override func tearDown() {
-        XCTAssert(_coreDataHelper.releaseMemoryManagedObjectContext())
         _model = nil
+        _dataStack.drop()
+        _dataStack = nil
         super.tearDown()
     }
 
@@ -62,7 +62,7 @@ class ModelTests: XCTestCase {
 
     func testAsyncLoadUsers() {
         var config = _config; config.kProviderType = .Async
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupUsers {
@@ -72,8 +72,7 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: UserEntity.entityName)
 
         do {
@@ -92,7 +91,7 @@ class ModelTests: XCTestCase {
 
     func testAsyncLoadAlbums() {
         var config = _config; config.kProviderType = .Async
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupAlbums {
@@ -102,8 +101,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: AlbumEntity.entityName)
 
         do {
@@ -121,7 +120,7 @@ class ModelTests: XCTestCase {
 
     func testAsyncLoadPhotos() {
         var config = _config; config.kProviderType = .Async
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupPhotos {
@@ -131,8 +130,7 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: PhotoEntity.entityName)
 
         do {
@@ -152,15 +150,15 @@ class ModelTests: XCTestCase {
 
     func testAsyncLoadPicture() {
         var config = _config; config.kProviderType = .Async
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
         let urlpath = bundle.pathForResource("thumbnail", ofType: "png")
         let url = NSURL.fileURLWithPath(urlpath!)
         let urlString = url.absoluteString
         let photoData = PhotoData(photoId: 1000, albumId: 1, title: "Sample", thumbnailUrl: urlString)
 
-        let cdm = CoreDataManager.instance
-        let photoEntity = cdm.createPhotoEntity(photoData)
+
+        let photoEntity = _dataStack.createPhotoEntity(photoData)
 
         _model.addPicture(photoEntity, finished: {
             print("dowloaded image: \(photoEntity.thumbnailUrl)")
@@ -179,7 +177,7 @@ class ModelTests: XCTestCase {
 
     func testAsyncSessionLoadUsers() {
         var config = _config; config.kProviderType = .AsyncSession
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupUsers {
@@ -189,8 +187,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: UserEntity.entityName)
 
         do {
@@ -209,7 +207,7 @@ class ModelTests: XCTestCase {
 
     func testAsyncSessionLoadAlbums() {
         var config = _config; config.kProviderType = .AsyncSession
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupAlbums {
@@ -219,8 +217,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: AlbumEntity.entityName)
 
         do {
@@ -238,7 +236,7 @@ class ModelTests: XCTestCase {
 
     func testAsyncSessionLoadPhotos() {
         var config = _config; config.kProviderType = .AsyncSession
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupPhotos {
@@ -248,8 +246,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(15, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: PhotoEntity.entityName)
 
         do {
@@ -269,15 +267,15 @@ class ModelTests: XCTestCase {
 
     func testAsyncSessionLoadPicture() {
         var config = _config; config.kProviderType = .AsyncSession
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
         let urlpath = bundle.pathForResource("thumbnail", ofType: "png")
         let url = NSURL.fileURLWithPath(urlpath!)
         let urlString = url.absoluteString
         let photoData = PhotoData(photoId: 1000, albumId: 1, title: "Sample", thumbnailUrl: urlString)
 
-        let cdm = CoreDataManager.instance
-        let photoEntity = cdm.createPhotoEntity(photoData)
+
+        let photoEntity = _dataStack.createPhotoEntity(photoData)
 
         _model.addPicture(photoEntity, finished: {
             print("dowloaded image: \(photoEntity.thumbnailUrl)")
@@ -296,7 +294,7 @@ class ModelTests: XCTestCase {
 
     func testAlamofireSessionLoadUsers() {
         var config = _config; config.kProviderType = .Alamofire
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupUsers {
@@ -306,8 +304,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: UserEntity.entityName)
 
         do {
@@ -326,7 +324,7 @@ class ModelTests: XCTestCase {
 
     func testAlamofireSessionLoadAlbums() {
         var config = _config; config.kProviderType = .Alamofire
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupAlbums {
@@ -336,8 +334,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(5, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: AlbumEntity.entityName)
 
         do {
@@ -355,7 +353,7 @@ class ModelTests: XCTestCase {
 
     func testAlamofireSessionLoadPhotos() {
         var config = _config; config.kProviderType = .Alamofire
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
 
         _model.setupPhotos {
@@ -365,8 +363,8 @@ class ModelTests: XCTestCase {
 
         waitForExpectationsWithTimeout(15, handler: nil)
 
-        let cdm = CoreDataManager.instance
-        let moc = cdm.managedContext
+
+        let moc = _dataStack.mainContext
         let fetch = NSFetchRequest(entityName: PhotoEntity.entityName)
 
         do {
@@ -386,15 +384,15 @@ class ModelTests: XCTestCase {
 
     func testAlamofireSessionLoadPicture() {
         var config = _config; config.kProviderType = .Alamofire
-        _model = Model(config: config)
+        _model = Model(config: config, dataStack: _dataStack)
         let expectation = expectationWithDescription("Async Method")
         let urlpath = bundle.pathForResource("thumbnail", ofType: "png")
         let url = NSURL.fileURLWithPath(urlpath!)
         let urlString = url.absoluteString
         let photoData = PhotoData(photoId: 1000, albumId: 1, title: "Sample", thumbnailUrl: urlString)
 
-        let cdm = CoreDataManager.instance
-        let photoEntity = cdm.createPhotoEntity(photoData)
+
+        let photoEntity = _dataStack.createPhotoEntity(photoData)
 
         _model.addPicture(photoEntity, finished: {
             print("dowloaded image: \(photoEntity.thumbnailUrl)")

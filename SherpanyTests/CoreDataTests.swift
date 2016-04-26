@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import CoreData
+import DATAStack
 @testable import Sherpany
 
 
@@ -20,31 +20,25 @@ private func ==(lhs: UserEntity, rhs: UserData) -> Bool {
 
 class CoreDataTests: XCTestCase {
 
-    let coreDataHelper = CoreDataHelper()
+    var dataStack: DATAStack!
 
     override func setUp() {
         super.setUp()
-        coreDataHelper.setUpInMemoryManagedObjectContext()
-        XCTAssertNotEqual(coreDataHelper.managedObjectContext, nil)
-        CoreDataManager.initialize(coreDataHelper.managedObjectContext)
+        dataStack = DATAStack(modelName: "Sherpany", bundle: NSBundle(forClass: CoreDataTests.self), storeType: .InMemory)
+        XCTAssertNotNil(dataStack)
     }
     
     override func tearDown() {
-        XCTAssert(coreDataHelper.releaseMemoryManagedObjectContext())
+        dataStack.drop()
         super.tearDown()
     }
 
-    func testStoreIsSetUp() {
-        XCTAssertNotNil(coreDataHelper.store, "no persitant store")
-    }
-    
     func testCoreData() {
         let user = UserData(userId: 1, name: "John Appleseed", email: "a@b.c", catchPhrase: "catch me")
-        let cdm = CoreDataManager.instance
 
-        cdm.createUserEntity(user)
+        dataStack.createUserEntity(user)
 
-        let moc = cdm.managedContext
+        let moc = dataStack.mainContext
         let fetch = NSFetchRequest(entityName: UserEntity.entityName)
 
         do {

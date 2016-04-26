@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import CoreData
+import DATAStack
 
-class AlbumsTableViewController: UITableViewController {
-    weak var model: Model! = nil
+
+class AlbumsTableViewController: BaseTableViewController {
     var userId: Int16 = -1
     private let _listDataSource: ListDataSourceProtocol
 
@@ -24,7 +24,7 @@ class AlbumsTableViewController: UITableViewController {
         super.viewDidLoad()
 
         // Setup the data source object.
-        _listDataSource.managedObjectContext = CoreDataManager.instance.managedContext
+        _listDataSource.managedObjectContext = dataStack.mainContext
         _listDataSource.tableView = tableView
         tableView.dataSource = _listDataSource
 
@@ -56,6 +56,7 @@ class AlbumsTableViewController: UITableViewController {
             let album = _listDataSource.objectAtIndexPath(indexPath) as! AlbumEntity
             let controller = segue.destinationViewController as! PhotosTableViewController
             controller.model = model
+            controller.dataStack = dataStack
             controller.albumId = album.albumId
             controller.navigationItem.title = album.title
         }
