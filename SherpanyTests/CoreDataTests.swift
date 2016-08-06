@@ -30,6 +30,7 @@ class CoreDataTests: XCTestCase {
     
     override func tearDown() {
         dataStack.drop()
+        dataStack = nil
         super.tearDown()
     }
 

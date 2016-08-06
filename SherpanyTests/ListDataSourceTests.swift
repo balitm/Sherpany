@@ -37,14 +37,10 @@ class ListDataSourceTests: XCTestCase {
         super.tearDown()
     }
 
-    func testOneUserInThePersistantStoreResultsInOneSection() {
+    func testOneUserInThePersistantStoreResults() {
         _dataStack.createUserEntity(_testUser)
-        XCTAssertEqual(_dataSource.numberOfSectionsInTableView(_tableView), 1, "After adding one user number of sections should be 1")
+        XCTAssertEqual(_tableView.numberOfSections, 1, "After adding one user number of sections should be 1.")
+        XCTAssertEqual(_tableView.numberOfRowsInSection(0), 1, "After adding one user number of rows should be 1.")
     }
 
-    func testOneUserInThePersistantStoreResultsInOneRow() {
-        _dataStack.createUserEntity(_testUser)
-        XCTAssertEqual(_dataSource.tableView(_tableView, numberOfRowsInSection: 0), 1, "After adding one user number of rows should be 1")
-    }
-    
 }

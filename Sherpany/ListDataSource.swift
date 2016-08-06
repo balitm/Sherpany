@@ -87,9 +87,7 @@ extension ListDataSource: NSFetchedResultsControllerDelegate {
         fetchRequest.sortDescriptors = [sortDescriptor]
 
         // Use predicate if defined.
-        if let pred = predicate {
-            fetchRequest.predicate = pred
-        }
+        fetchRequest.predicate = self.predicate
 
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
